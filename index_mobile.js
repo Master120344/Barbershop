@@ -1,30 +1,90 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- Fade-in on Scroll Animation Logic ---
+    const header = document.getElementById('main-header');
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const scrollElements = document.querySelectorAll('.animate-on-scroll');
 
-    // Select all elements that should be revealed on scroll
-    const revealElements = document.querySelectorAll('.reveal');
+    const handleHeaderScroll = () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    };
 
-    // Create an Intersection Observer
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            // If the element is intersecting the viewport (i.e., visible)
-            if (entry.isIntersecting) {
-                // Add the 'visible' class to trigger the CSS animation
-                entry.target.classList.add('visible');
-                // Stop observing the element after it has been revealed
-                observer.unobserve(entry.target);
+    const toggleMobileNav = () => {
+        const isNavActive = mobileNav.classList.contains('is-active');
+        hamburgerBtn.classList.toggle('is-active', !isNavActive);
+        mobileNav.classList.toggle('is-active', !isNavActive);
+        document.body.style.overflow = !isNavActive ? 'hidden' : 'auto';
+    };
+
+    const handleMobileNavClick = (e) => {
+        if (e.target.tagName === 'A') {
+            toggleMobileNav();
+        }
+    };
+
+    const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return (
+            elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+        );
+    };
+
+    const displayScrollElement = (element) => {
+        element.classList.add('is-visible');
+    };
+
+    const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+            if (elementInView(el, 1.25)) {
+                displayScrollElement(el);
             }
         });
-    }, {
-        root: null, // observes intersections relative to the viewport
-        threshold: 0.1, // triggers the animation when 10% of the element is visible
-        rootMargin: '0px 0px -50px 0px' // starts the animation a little sooner
+    };
+
+    window.addEventListener('scroll', () => {
+        handleHeaderScroll();
+        handleScrollAnimation();
     });
 
-    // Attach the observer to each element
-    revealElements.forEach(element => {
-        revealObserver.observe(element);
-    });
+    hamburgerBtn.addEventListener('click', toggleMobileNav);
+    mobileNav.addEventListener('click', handleMobileNavClick);
 
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const input = newsletterForm.querySelector('.newsletter-input');
+            const button = newsletterForm.querySelector('button');
+
+            if (input.value && input.checkValidity()) {
+                button.textContent = 'Thank You!';
+                input.value = '';
+                setTimeout(() => {
+                    button.textContent = 'Subscribe';
+                }, 3000);
+            } else {
+                button.textContent = 'Invalid Email';
+                 setTimeout(() => {
+                    button.textContent = 'Subscribe';
+                }, 2000);
+            }
+        });
+    }
+
+    const logo = document.querySelector('.logo-title');
+    if(logo) {
+        logo.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // Initial check for animations on page load
+    handleScrollAnimation();
 });
