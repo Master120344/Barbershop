@@ -1,51 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- Side Navigation Menu Logic ---
-    const menuIcon = document.getElementById('menu-icon');
-    const sideNav = document.getElementById('side-nav');
-    const overlay = document.getElementById('overlay');
-    const navLinks = document.querySelectorAll('.nav-link');
+    // --- Fade-in on Scroll Animation Logic ---
 
-    // Function to open the menu
-    function openMenu() {
-        sideNav.classList.add('open');
-        overlay.classList.add('show');
-    }
-
-    // Function to close the menu
-    function closeMenu() {
-        sideNav.classList.remove('open');
-        overlay.classList.remove('show');
-    }
-
-    // Event listener for the menu icon
-    menuIcon.addEventListener('click', openMenu);
-
-    // Event listener for the overlay (to close menu when clicking outside)
-    overlay.addEventListener('click', closeMenu);
-
-    // Event listeners for each nav link to close menu on click
-    navLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
-    });
-
-
-    // --- Fade-in on Scroll Animation ---
+    // Select all elements that should be revealed on scroll
     const revealElements = document.querySelectorAll('.reveal');
 
+    // Create an Intersection Observer
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
+            // If the element is intersecting the viewport (i.e., visible)
             if (entry.isIntersecting) {
+                // Add the 'visible' class to trigger the CSS animation
                 entry.target.classList.add('visible');
-                // Optional: Stop observing the element once it's visible
+                // Stop observing the element after it has been revealed
                 observer.unobserve(entry.target);
             }
         });
     }, {
         root: null, // observes intersections relative to the viewport
-        threshold: 0.1 // triggers when 10% of the element is visible
+        threshold: 0.1, // triggers the animation when 10% of the element is visible
+        rootMargin: '0px 0px -50px 0px' // starts the animation a little sooner
     });
 
+    // Attach the observer to each element
     revealElements.forEach(element => {
         revealObserver.observe(element);
     });
