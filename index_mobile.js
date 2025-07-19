@@ -1,90 +1,47 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    const header = document.getElementById('main-header');
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const mobileNav = document.getElementById('mobile-nav');
-    const scrollElements = document.querySelectorAll('.animate-on-scroll');
+    // --- Interactive Gallery Tab Logic ---
+    const galleryTabsContainer = document.querySelector('.gallery-tabs');
+    const tabLinks = document.querySelectorAll('.tab-link');
+    const galleryGrids = document.querySelectorAll('.gallery-grid');
 
-    const handleHeaderScroll = () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    };
+    if (galleryTabsContainer) {
+        galleryTabsContainer.addEventListener('click', (e) => {
+            // Check if a tab button was clicked
+            if (e.target.matches('.tab-link')) {
+                const clickedTab = e.target;
+                const targetGridId = clickedTab.dataset.tab;
+                const targetGrid = document.getElementById(targetGridId);
 
-    const toggleMobileNav = () => {
-        const isNavActive = mobileNav.classList.contains('is-active');
-        hamburgerBtn.classList.toggle('is-active', !isNavActive);
-        mobileNav.classList.toggle('is-active', !isNavActive);
-        document.body.style.overflow = !isNavActive ? 'hidden' : 'auto';
-    };
+                // Update active state on tab buttons
+                tabLinks.forEach(link => link.classList.remove('active'));
+                clickedTab.classList.add('active');
 
-    const handleMobileNavClick = (e) => {
-        if (e.target.tagName === 'A') {
-            toggleMobileNav();
-        }
-    };
-
-    const elementInView = (el, dividend = 1) => {
-        const elementTop = el.getBoundingClientRect().top;
-        return (
-            elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
-        );
-    };
-
-    const displayScrollElement = (element) => {
-        element.classList.add('is-visible');
-    };
-
-    const handleScrollAnimation = () => {
-        scrollElements.forEach((el) => {
-            if (elementInView(el, 1.25)) {
-                displayScrollElement(el);
+                // Update active state on gallery grids
+                galleryGrids.forEach(grid => grid.classList.remove('active'));
+                if (targetGrid) {
+                    targetGrid.classList.add('active');
+                }
             }
         });
-    };
+    }
 
-    window.addEventListener('scroll', () => {
-        handleHeaderScroll();
-        handleScrollAnimation();
+    // --- Fade-in on Scroll Animation Logic ---
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Stop observing once visible
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger when 10% of the element is in view
     });
 
-    hamburgerBtn.addEventListener('click', toggleMobileNav);
-    mobileNav.addEventListener('click', handleMobileNavClick);
+    revealElements.forEach(element => {
+        revealObserver.observe(element);
+    });
 
-    const newsletterForm = document.querySelector('.newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const input = newsletterForm.querySelector('.newsletter-input');
-            const button = newsletterForm.querySelector('button');
-
-            if (input.value && input.checkValidity()) {
-                button.textContent = 'Thank You!';
-                input.value = '';
-                setTimeout(() => {
-                    button.textContent = 'Subscribe';
-                }, 3000);
-            } else {
-                button.textContent = 'Invalid Email';
-                 setTimeout(() => {
-                    button.textContent = 'Subscribe';
-                }, 2000);
-            }
-        });
-    }
-
-    const logo = document.querySelector('.logo-title');
-    if(logo) {
-        logo.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-    
-    // Initial check for animations on page load
-    handleScrollAnimation();
 });
