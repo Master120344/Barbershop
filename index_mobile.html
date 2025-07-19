@@ -3,102 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clean Cutz - The Art of Grooming | Austin, TX</title>
+    <title>Clean Cutz | Austin's Elite Barbershop Experience</title>
     <link rel="stylesheet" href="index_mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="header">
         <div class="logo">CLEAN CUTZ</div>
-        <nav class="main-nav">
-            <a href="#gallery">Work</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <a href="booking_mobile.html" class="header-book-btn">Book Now</a>
     </header>
 
     <main>
 
+        <!-- Section 1: Cinematic Hero -->
         <section class="hero">
             <div class="hero-content">
-                <h1 class="hero-headline">Artistry in Every Cut</h1>
-                <p class="hero-subheadline">Austin's destination for precision grooming and timeless style.</p>
-                <a href="booking_mobile.html" class="hero-cta">Book Now</a>
+                <h1 class="hero-title">ENGINEERED STYLE</h1>
+                <p class="hero-subtitle">Experience the pinnacle of men's grooming in Austin, Texas. Precision. Craft. Confidence.</p>
+                <a href="booking_mobile.html" class="hero-cta-button">BOOK YOUR APPOINTMENT</a>
             </div>
         </section>
 
-        <section id="intro" class="intro-section reveal">
-            <div class="intro-image">
-                <img src="https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=1200" alt="The modern and clean interior of the Clean Cutz barbershop">
+        <!-- Section 2: Brand Promise -->
+        <section class="brand-promise-section reveal">
+            <div class="promise-item">
+                <h3>PRECISION</h3>
+                <p>Every line is intentional. Every fade is flawless. We are obsessed with the details.</p>
             </div>
-            <div class="intro-text">
-                <h2 class="section-title">The Modern Atelier</h2>
-                <p>We are a studio of master barbers dedicated to the craft. Clean Cutz was founded on the principle that a haircut is more than a routine—it's a ritual of self-care and confidence. We blend classic techniques with contemporary vision to create a look that is authentically you.</p>
+            <div class="promise-item">
+                <h3>CRAFT</h3>
+                <p>We honor the timeless traditions of barbering while pushing the boundaries of modern style.</p>
+            </div>
+            <div class="promise-item">
+                <h3>EXPERIENCE</h3>
+                <p>More than a haircut—it’s a moment to relax, recharge, and invest in yourself.</p>
             </div>
         </section>
 
+        <!-- Section 3: About Showcase -->
+        <section class="about-showcase-section reveal">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=1200" alt="Sleek, modern interior of the Clean Cutz barbershop">
+            </div>
+            <div class="about-text">
+                <h2 class="section-heading">THE SANCTUARY OF STYLE</h2>
+                <p>Nestled in the heart of Austin, Clean Cutz is a curated space designed for the modern man. We rejected the notion of the one-size-fits-all barbershop to create an environment that is as refined and distinctive as our clientele. From the chair you sit in to the products we use, every detail is chosen to provide an unparalleled grooming experience.</p>
+            </div>
+        </section>
+
+        <!-- Section 4: Tabbed Gallery -->
         <section id="gallery" class="gallery-section reveal">
-            <h2 class="section-title">Our Portfolio</h2>
-            
+            <h2 class="section-heading">OUR WORK</h2>
             <div class="gallery-tabs">
-                <button class="tab-link active" data-tab="fades">Fades</button>
-                <button class="tab-link" data-tab="classics">Classic Cuts</button>
-                <button class="tab-link" data-tab="beards">Beard Styling</button>
+                <button class="tab-link active" data-tab="fades">Skin Fades</button>
+                <button class="tab-link" data-tab="beards">Beard Work</button>
+                <button class="tab-link" data-tab="styles">Styled Cuts</button>
             </div>
-
-            <div class="gallery-content">
-                <!-- Fades Gallery -->
+            <div class="gallery-container">
+                <!-- Fades Grid -->
                 <div class="gallery-grid active" id="fades">
-                    <img src="https://images.unsplash.com/photo-1599338153498-636c57b119a0?q=80&w=800" alt="Sharp skin fade haircut">
-                    <img src="https://images.unsplash.com/photo-1622288439395-3d853b8d4f40?q=80&w=800" alt="Low fade with textured top">
-                    <img src="https://images.unsplash.com/photo-1598506922442-70b16f38c122?q=80&w=800" alt="High fade haircut">
+                    <img src="https://images.unsplash.com/photo-1599338153498-636c57b119a0?q=80&w=800" alt="Impeccable high skin fade">
+                    <img src="https://images.unsplash.com/photo-1622288439395-3d853b8d4f40?q=80&w=800" alt="Sharp low fade with textured top">
+                    <img src="https://images.unsplash.com/photo-1598506922442-70b16f38c122?q=80&w=800" alt="Clean fade on another client">
                 </div>
-                <!-- Classic Cuts Gallery -->
-                <div class="gallery-grid" id="classics">
-                     <img src="https://images.unsplash.com/photo-1632345031435-802444ec7a53?q=80&w=800" alt="Man with a classic side-part haircut">
-                     <img src="https://images.unsplash.com/photo-1617935422699-b159f80a719c?q=80&w=800" alt="A textured scissor cut hairstyle">
-                     <img src="https://images.unsplash.com/photo-1585745814894-7933a84c3f56?q=80&w=800" alt="A clean scissor cut">
-                </div>
-                <!-- Beard Styling Gallery -->
+                <!-- Beards Grid -->
                 <div class="gallery-grid" id="beards">
-                    <img src="https://images.unsplash.com/photo-1622288399313-0877a2893815?q=80&w=800" alt="Perfectly shaped full beard">
-                    <img src="https://images.unsplash.com/photo-1533292429824-540728448512?q=80&w=800" alt="Man with a short beard and mustache">
-                    <img src="https://images.unsplash.com/photo-1615170624133-c236528bf8e6?q=80&w=800" alt="A sharp beard line-up">
+                    <img src="https://images.unsplash.com/photo-1622288399313-0877a2893815?q=80&w=800" alt="Perfectly sculpted and oiled beard">
+                    <img src="https://images.unsplash.com/photo-1615170624133-c236528bf8e6?q=80&w=800" alt="Sharp line up on a beard">
+                </div>
+                <!-- Styles Grid -->
+                <div class="gallery-grid" id="styles">
+                    <img src="https://images.unsplash.com/photo-1632345031435-802444ec7a53?q=80&w=800" alt="Classic side part hairstyle">
+                    <img src="https://images.unsplash.com/photo-1617935422699-b159f80a719c?q=80&w=800" alt="Modern textured crop haircut">
                 </div>
             </div>
         </section>
 
+        <!-- Section 5: Services -->
         <section id="services" class="services-section reveal">
-            <h2 class="section-title">Signature Services</h2>
-            <div class="service-item">
-                <h3>The Cut</h3>
-                <p>Consultation, precision haircut, and style using premium products.</p>
+            <h2 class="section-heading">SIGNATURE SERVICES</h2>
+            <div class="service-card">
+                <h3>THE CUT</h3>
+                <p>A master-level haircut and style, tailored to your head shape, hair type, and lifestyle. Includes a hot towel neck shave. </p>
             </div>
-            <div class="service-item">
-                <h3>The Shave</h3>
-                <p>A traditional hot towel, straight-razor shave for ultimate closeness.</p>
+            <div class="service-card">
+                <h3>THE SHAVE</h3>
+                <p>A luxurious, traditional straight-razor shave using hot towels, premium pre-shave oils, and soothing after-shave balms.</p>
             </div>
-            <div class="service-item">
-                <h3>The Works</h3>
-                <p>The complete experience. Combines The Cut and The Shave.</p>
+            <div class="service-card">
+                <h3>THE DETAIL</h3>
+                <p>Complete beard and mustache sculpting. Trimmed, shaped, and finished with a straight-razor line-up for ultimate definition.</p>
             </div>
+        </section>
+
+        <!-- Section 6: Final CTA -->
+        <section class="final-cta-section reveal">
+             <h2 class="section-heading">YOUR CHAIR IS WAITING.</h2>
+             <a href="booking_mobile.html" class="hero-cta-button">Reserve Your Time</a>
         </section>
 
     </main>
 
-    <footer id="contact" class="footer">
-        <h2 class="footer-title">CLEAN CUTZ</h2>
-        <p>123 Style Avenue, Austin, Texas</p>
-        <p><a href="tel:512-555-1234">512-555-1234</a></p>
-        <div class="footer-hours">
-            <p><strong>Hours:</strong> Tue - Sat, 10am - 7pm</p>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4 class="footer-heading">CLEAN CUTZ</h4>
+                <p>The Art of Grooming.</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Contact</h4>
+                <p>123 High-End Ave<br>Austin, TX 78701</p>
+                <p>contact@cleancutz.com</p>
+                <p>(512) 555-0101</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-heading">Hours</h4>
+                <p>Tue – Fri: 10am – 7pm</p>
+                <p>Saturday: 9am – 6pm</p>
+                <p>Sun & Mon: Closed</p>
+            </div>
         </div>
-        <a href="booking_mobile.html" class="footer-cta">Request an Appointment</a>
-        <p class="copyright">© 2025 Clean Cutz. All Rights Reserved.</p>
+        <div class="footer-bottom">
+            <p>© 2025 Clean Cutz Barbershop. All Rights Reserved.</p>
+        </div>
     </footer>
+
 
     <script src="index_mobile.js"></script>
 </body>
