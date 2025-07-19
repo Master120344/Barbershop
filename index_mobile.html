@@ -1,105 +1,240 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clean Cutz - The Art of Grooming | Austin, TX</title>
-    <link rel="stylesheet" href="index_mobile.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-</head>
-<body>
+/* --- Core Design System --- */
+:root {
+    --bg-color: #F9F9F7;
+    --card-bg: #FFFFFF;
+    --primary-text: #1A1A1A;
+    --secondary-text: #666666;
+    --accent-color: #D97706; /* Burnt Orange/Cognac */
+    --border-color: #EAEAEA;
+    --font-heading: 'Oswald', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
 
-    <header class="header">
-        <div class="logo">CLEAN CUTZ</div>
-        <nav class="main-nav">
-            <a href="#gallery">Work</a>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+/* --- Base & Body Styles --- */
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--primary-text);
+    font-weight: 400;
+}
 
-    <main>
+/* --- Header --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    box-sizing: border-box;
+}
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--card-bg);
+    letter-spacing: 2px;
+}
+.main-nav a {
+    font-family: var(--font-body);
+    color: var(--card-bg);
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 20px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
 
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="hero-headline">Artistry in Every Cut</h1>
-                <p class="hero-subheadline">Austin's destination for precision grooming and timeless style.</p>
-                <a href="booking_mobile.html" class="hero-cta">Book Now</a>
-            </div>
-        </section>
+/* --- Hero Section --- */
+.hero {
+    height: 90vh;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.8)), url('https://images.unsplash.com/photo-1567894340345-a61b3417e251?q=80&w=1200') no-repeat center center/cover;
+    color: var(--card-bg);
+}
+.hero-headline {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+.hero-subheadline {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin: 0 0 30px 0;
+    max-width: 400px;
+}
+.hero-cta {
+    background-color: var(--accent-color);
+    color: var(--card-bg);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 18px 50px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.hero-cta:hover {
+    background-color: #b96405;
+    transform: translateY(-3px);
+}
 
-        <section id="intro" class="intro-section reveal">
-            <div class="intro-image">
-                <img src="https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=1200" alt="The modern and clean interior of the Clean Cutz barbershop">
-            </div>
-            <div class="intro-text">
-                <h2 class="section-title">The Modern Atelier</h2>
-                <p>We are a studio of master barbers dedicated to the craft. Clean Cutz was founded on the principle that a haircut is more than a routine—it's a ritual of self-care and confidence. We blend classic techniques with contemporary vision to create a look that is authentically you.</p>
-            </div>
-        </section>
+/* --- General Section Styling --- */
+.section-title {
+    font-family: var(--font-heading);
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-        <section id="gallery" class="gallery-section reveal">
-            <h2 class="section-title">Our Portfolio</h2>
-            
-            <div class="gallery-tabs">
-                <button class="tab-link active" data-tab="fades">Fades</button>
-                <button class="tab-link" data-tab="classics">Classic Cuts</button>
-                <button class="tab-link" data-tab="beards">Beard Styling</button>
-            </div>
+/* --- Intro Section --- */
+.intro-section {
+    padding: 60px 25px;
+    background-color: var(--card-bg);
+}
+.intro-image img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+.intro-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--secondary-text);
+    text-align: center;
+}
 
-            <div class="gallery-content">
-                <!-- Fades Gallery -->
-                <div class="gallery-grid active" id="fades">
-                    <img src="https://images.unsplash.com/photo-1599338153498-636c57b119a0?q=80&w=800" alt="Sharp skin fade haircut">
-                    <img src="https://images.unsplash.com/photo-1622288439395-3d853b8d4f40?q=80&w=800" alt="Low fade with textured top">
-                    <img src="https://images.unsplash.com/photo-1598506922442-70b16f38c122?q=80&w=800" alt="High fade haircut">
-                </div>
-                <!-- Classic Cuts Gallery -->
-                <div class="gallery-grid" id="classics">
-                     <img src="https://images.unsplash.com/photo-1632345031435-802444ec7a53?q=80&w=800" alt="Man with a classic side-part haircut">
-                     <img src="https://images.unsplash.com/photo-1617935422699-b159f80a719c?q=80&w=800" alt="A textured scissor cut hairstyle">
-                     <img src="https://images.unsplash.com/photo-1585745814894-7933a84c3f56?q=80&w=800" alt="A clean scissor cut">
-                </div>
-                <!-- Beard Styling Gallery -->
-                <div class="gallery-grid" id="beards">
-                    <img src="https://images.unsplash.com/photo-1622288399313-0877a2893815?q=80&w=800" alt="Perfectly shaped full beard">
-                    <img src="https://images.unsplash.com/photo-1533292429824-540728448512?q=80&w=800" alt="Man with a short beard and mustache">
-                    <img src="https://images.unsplash.com/photo-1615170624133-c236528bf8e6?q=80&w=800" alt="A sharp beard line-up">
-                </div>
-            </div>
-        </section>
+/* --- Gallery Section --- */
+.gallery-section {
+    padding: 60px 25px;
+}
+.gallery-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.tab-link {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--secondary-text);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 5px;
+    cursor: pointer;
+    transition: color 0.3s, border-color 0.3s;
+}
+.tab-link.active {
+    color: var(--primary-text);
+    border-bottom-color: var(--accent-color);
+}
+.gallery-grid {
+    display: none; /* Hidden by default */
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.gallery-grid.active {
+    display: grid; /* Shown when active */
+}
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
 
-        <section id="services" class="services-section reveal">
-            <h2 class="section-title">Signature Services</h2>
-            <div class="service-item">
-                <h3>The Cut</h3>
-                <p>Consultation, precision haircut, and style using premium products.</p>
-            </div>
-            <div class="service-item">
-                <h3>The Shave</h3>
-                <p>A traditional hot towel, straight-razor shave for ultimate closeness.</p>
-            </div>
-            <div class="service-item">
-                <h3>The Works</h3>
-                <p>The complete experience. Combines The Cut and The Shave.</p>
-            </div>
-        </section>
+/* --- Services Section --- */
+.services-section {
+    padding: 60px 25px;
+    background-color: var(--card-bg);
+}
+.service-item {
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding: 30px 0;
+}
+.service-item:last-child {
+    border-bottom: 1px solid var(--border-color);
+}
+.service-item h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;
+}
+.service-item p {
+    color: var(--secondary-text);
+    margin: 0;
+    line-height: 1.6;
+}
 
-    </main>
-
-    <footer id="contact" class="footer">
-        <h2 class="footer-title">CLEAN CUTZ</h2>
-        <p>123 Style Avenue, Austin, Texas</p>
-        <p><a href="tel:512-555-1234">512-555-1234</a></p>
-        <div class="footer-hours">
-            <p><strong>Hours:</strong> Tue - Sat, 10am - 7pm</p>
-        </div>
-        <a href="booking_mobile.html" class="footer-cta">Request an Appointment</a>
-        <p class="copyright">© 2025 Clean Cutz. All Rights Reserved.</p>
-    </footer>
-
-    <script src="index_mobile.js"></script>
-</body>
-</html>
+/* --- Footer --- */
+.footer {
+    background-color: #111111;
+    color: var(--bg-color);
+    text-align: center;
+    padding: 50px 25px 25px 25px;
+}
+.footer-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin: 0 0 15px 0;
+}
+.footer p {
+    color: #a0a0a0;
+    margin: 5px 0;
+}
+.footer a {
+    color: var(--bg-color);
+    text-decoration: none;
+}
+.footer-hours {
+    margin: 20px 0;
+}
+.footer-cta {
+    display: inline-block;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: 700;
+    margin: 20px 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+.footer-cta:hover {
+    background-color: var(--accent-color);
+    color: var(--card-bg);
+}
+.copyright {
+    font-size: 0.8rem;
+    margin-top: 30px;
+    color: #555;
+}
