@@ -1,1 +1,292 @@
+/* --- Core & Variables --- */
+:root {
+    --bg-color: #121212;
+    --primary-card-color: #1E1E1E;
+    --accent-color: #D4AF37;
+    --text-primary: #F5F5F5;
+    --text-secondary: #A0A0A0;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Roboto', sans-serif;
+}
 
+/* --- Base Styles --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-weight: 300;
+    margin: 0;
+    padding-top: 70px; /* Space for sticky header */
+}
+
+/* --- Header & Navigation --- */
+.header {
+    background-color: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0 20px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo a {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.menu-icon {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.menu-icon span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: var(--text-primary);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Side Navigation */
+.side-nav {
+    height: 100%;
+    width: 280px;
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    right: -280px; /* Initially hidden */
+    background-color: var(--primary-card-color);
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.side-nav.open {
+    right: 0;
+}
+.nav-link {
+    padding: 15px;
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    transition: color 0.3s;
+}
+.nav-link:hover {
+    color: var(--accent-color);
+}
+.nav-button {
+    margin-top: 30px;
+}
+
+/* Overlay for when nav is open */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.overlay.show {
+    display: block;
+}
+
+
+/* --- Hero Section --- */
+.hero {
+    height: calc(85vh - 70px);
+    background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1634453784136-96b173527a44?q=80&w=1200') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+    color: #fff;
+}
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* --- CTA Button --- */
+.cta-button {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    font-family: var(--font-body);
+    font-weight: 500;
+    text-decoration: none;
+    padding: 15px 35px;
+    border-radius: 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* --- General Content Sections --- */
+.content-section {
+    padding: 60px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.section-title {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+.section-intro {
+    text-align: center;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+/* Fade-in animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s, transform 0.8s;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Features, Services, Testimonials */
+.features-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.feature-item, .service-card, .testimonial-card {
+    background-color: var(--primary-card-color);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin: 0 0 10px 0;
+}
+
+/* --- Gallery --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 40px;
+}
+.gallery-item {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.gallery-item.wide {
+    grid-column: span 2;
+}
+.gallery-item.tall {
+    height: 410px; /* 200*2 + 10 */
+    grid-row: span 2;
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* --- Testimonials --- */
+.testimonial-card {
+    margin-bottom: 20px;
+}
+.quote {
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+cite {
+    display: block;
+    text-align: right;
+    margin-top: 15px;
+    font-style: normal;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+/* --- Footer --- */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--primary-card-color);
+}
+.footer-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin: 0;
+}
+.footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+.hours {
+    margin: 20px 0;
+    color: var(--text-secondary);
+}
+.hours p {
+    margin: 5px 0;
+}
+.social-links {
+    margin: 20px 0;
+}
+.social-links a {
+    display: inline-block;
+    color: var(--text-primary);
+    border: 1px solid var(--text-secondary);
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    margin: 0 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.social-links a:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    border-color: var(--accent-color);
+}
+.copyright {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 30px;
+}
