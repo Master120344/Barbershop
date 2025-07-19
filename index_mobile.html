@@ -3,138 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clean Cutz - Premier Barbershop in Austin, TX</title>
+    <title>Clean Cutz - Austin's Premier Barbershop</title>
     <link rel="stylesheet" href="index_mobile.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
+    <div class="overlay" id="overlay"></div>
+
+    <header class="header">
         <div class="logo">
-            <h1>Clean Cutz</h1>
-            <span>AUSTIN, TX</span>
+            <a href="#">Clean Cutz</a>
         </div>
-        <button id="menu-toggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-        <nav id="mobile-nav">
-            <ul>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#gallery">Our Work</a></li>
-                <li><a href="#booking">Book Now</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="menu-icon" id="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
+
+    <nav class="side-nav" id="side-nav">
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="booking.html" class="cta-button nav-button">Book Now</a>
+    </nav>
 
     <main>
         <section class="hero">
-            <div class="hero-image-placeholder">
-                <img src="https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=2070&auto=format&fit=crop" alt="Stylish interior of Clean Cutz barbershop">
-            </div>
-            <div class="hero-text">
-                <h2>The Finest Cuts in Austin</h2>
-                <p>Where style, precision, and tradition meet. Experience the art of grooming.</p>
-                <a href="#booking" class="cta-button">Book Your Appointment</a>
+            <div class="hero-content">
+                <h1 class="hero-title">Precision Grooming for the Modern Man</h1>
+                <p class="hero-subtitle">Experience the art of barbering in the heart of Austin.</p>
+                <a href="booking.html" class="cta-button">Book Your Appointment</a>
             </div>
         </section>
 
-        <section id="services" class="content-section">
-            <h2 class="section-title">Our Services</h2>
-            <div class="service-item">
-                <h3>The Signature Cut</h3>
-                <p class="price">$50</p>
-                <p>A precision haircut and style, finished with a straight razor neck shave.</p>
-            </div>
-            <div class="service-item">
-                <h3>Deluxe Beard Grooming</h3>
-                <p class="price">$35</p>
-                <p>A hot towel treatment, detailed beard trim, shaping, and razor line-up.</p>
-            </div>
-            <div class="service-item">
-                <h3>The Head Shave</h3>
-                <p class="price">$45</p>
-                <p>A classic hot towel head shave for the ultimate clean look.</p>
-            </div>
-             <div class="service-item">
-                <h3>The Full Experience</h3>
-                <p class="price">$80</p>
-                <p>Combine our Signature Cut with Deluxe Beard Grooming for the complete package.</p>
+        <section id="about" class="content-section reveal">
+            <h2 class="section-title">Where Style is Crafted</h2>
+            <p class="section-intro">Clean Cutz isn't just a haircut, it's an experience. We blend traditional techniques with modern styles in a relaxed, upscale environment. Step in, unwind, and walk out looking your absolute best.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>Expert Barbers</h3>
+                    <p>Our team consists of passionate, skilled professionals dedicated to their craft.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Premium Products</h3>
+                    <p>We use only the finest quality grooming products for superior results.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Unmatched Vibe</h3>
+                    <p>A sophisticated yet comfortable atmosphere where you can feel at home.</p>
+                </div>
             </div>
         </section>
 
-        <section id="gallery" class="content-section">
-            <h2 class="section-title">Our Work</h2>
+        <section id="services" class="content-section reveal">
+            <h2 class="section-title">Our Signature Services</h2>
+            <div class="service-card">
+                <h3>The Executive Cut</h3>
+                <p>A tailored haircut, shampoo, condition, and professional styling.</p>
+            </div>
+            <div class="service-card">
+                <h3>Hot Towel Shave</h3>
+                <p>A classic straight-razor shave with hot towels and premium balms.</p>
+            </div>
+            <div class="service-card">
+                <h3>Beard Sculpting</h3>
+                <p>Detailed shaping, trimming, and lining of your beard and mustache.</p>
+            </div>
+            <div class="service-card">
+                <h3>The Full Works</h3>
+                <p>The ultimate grooming package: The Executive Cut & Hot Towel Shave.</p>
+            </div>
+        </section>
+
+        <section id="gallery" class="content-section reveal">
+            <h2 class="section-title">View Our Work</h2>
             <div class="gallery-grid">
-                <div class="gallery-placeholder"><img src="https://images.unsplash.com/photo-1599338153498-636c57b119a0?q=80&w=1974&auto=format&fit=crop" alt="Placeholder for a sharp skin fade"></div>
-                <div class="gallery-placeholder"><img src="https://images.unsplash.com/photo-1622288399313-0877a2893815?q=80&w=1974&auto=format&fit=crop" alt="Placeholder for a well-groomed beard"></div>
-                <div class="gallery-placeholder"><img src="https://images.unsplash.com/photo-1622288439395-3d853b8d4f40?q=80&w=1974&auto=format&fit=crop" alt="Placeholder for a classic men's hairstyle"></div>
-                <div class="gallery-placeholder"><img src="https://images.unsplash.com/photo-1598506922442-70b16f38c122?q=80&w=1974&auto=format&fit=crop" alt="Placeholder for a creative hair design"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1599338153498-636c57b119a0?q=80&w=800" alt="Sharp skin fade haircut"></div>
+                <div class="gallery-item wide"><img src="https://images.unsplash.com/photo-1621607512214-68297480165e?q=80&w=1200" alt="Stylish interior of the barbershop"></div>
+                <div class="gallery-item tall"><img src="https://images.unsplash.com/photo-1622288399313-0877a2893815?q=80&w=800" alt="Perfectly groomed beard"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1598506922442-70b16f38c122?q=80&w=800" alt="Classic men's haircut"></div>
             </div>
         </section>
 
-        <section id="booking" class="content-section">
-            <h2 class="section-title">Book an Appointment</h2>
-            <div class="booking-container">
-                <div class="booking-tabs">
-                    <button class="tab-link active" data-tab="tab-1">1. Service</button>
-                    <button class="tab-link" data-tab="tab-2">2. Barber</button>
-                    <button class="tab-link" data-tab="tab-3">3. Date & Time</button>
-                </div>
-
-                <div id="tab-1" class="tab-content active">
-                    <h3>Select a Service</h3>
-                    <select class="booking-select">
-                        <option value="signature">The Signature Cut ($50)</option>
-                        <option value="beard">Deluxe Beard Grooming ($35)</option>
-                        <option value="headshave">The Head Shave ($45)</option>
-                        <option value="full">The Full Experience ($80)</option>
-                    </select>
-                </div>
-
-                <div id="tab-2" class="tab-content">
-                    <h3>Choose Your Barber</h3>
-                    <select class="booking-select">
-                        <option value="any">Any Barber</option>
-                        <option value="john">John Doe</option>
-                        <option value="jane">Jane Smith</option>
-                    </select>
-                </div>
-
-                <div id="tab-3" class="tab-content">
-                    <h3>Choose Date & Time</h3>
-                    <input type="date" class="booking-input">
-                    <select class="booking-select">
-                        <option>10:00 AM</option>
-                        <option>11:00 AM</option>
-                        <option>12:00 PM</option>
-                        <option>2:00 PM</option>
-                        <option>3:00 PM</option>
-                    </select>
-                </div>
-                 <button class="cta-button booking-button">Confirm Booking</button>
+        <section id="testimonials" class="content-section reveal">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonial-card">
+                <p class="quote">"By far the best barbershop in Austin. The attention to detail is incredible. I've never had a better cut."</p>
+                <cite>- Mark R.</cite>
+            </div>
+            <div class="testimonial-card">
+                <p class="quote">"The atmosphere is amazing and the barbers are true artists. Clean Cutz is my go-to spot from now on."</p>
+                <cite>- David L.</cite>
             </div>
         </section>
-
     </main>
 
-    <footer id="contact">
-        <h2>Clean Cutz</h2>
-        <p>1234 Modern Ave, Austin, TX 78701</p>
-        <p><a href="tel:512-555-CUTZ">512-555-CUTZ</a></p>
-        <h3>Hours</h3>
-        <p>Tue - Fri: 10am - 7pm | Sat: 9am - 6pm</p>
-
+    <footer id="contact" class="footer">
+        <h2 class="footer-title">Clean Cutz</h2>
+        <p>1234 Downtown Ave, Austin, TX 78701</p>
+        <p><a href="tel:512-555-1234">512-555-1234</a></p>
+        <div class="hours">
+            <p><strong>Tue - Fri:</strong> 10am - 7pm</p>
+            <p><strong>Saturday:</strong> 9am - 6pm</p>
+            <p><strong>Sun & Mon:</strong> Closed</p>
+        </div>
         <div class="social-links">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">Yelp</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Yelp">YP</a>
         </div>
         <p class="copyright">© 2025 Clean Cutz. All Rights Reserved.</p>
     </footer>
 
-    <script src="mobile.js"></script>
+    <script src="index_mobile.js"></script>
 </body>
 </html>
