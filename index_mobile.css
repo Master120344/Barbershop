@@ -486,7 +486,7 @@ a:hover {
     font-size: 1.1rem;
     font-weight: 700;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif; /* Added font for caption */
     opacity: 0;
     transition: opacity var(--transition-speed-medium) ease;
 }
@@ -704,7 +704,7 @@ a:hover {
     font-size: 1.3rem;
     color: var(--secondary-color);
     margin-bottom: 10px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif; /* Added font for titles */
 }
 
 .contact-info-block p {
@@ -766,7 +766,7 @@ a:hover {
     font-size: 1.2rem;
     color: var(--secondary-color);
     margin-bottom: 25px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif; /* Added font for titles */
 }
 
 .footer-nav-links ul, .footer-services ul {
@@ -830,6 +830,11 @@ a:hover {
     .hero-title .main-title-large { font-size: 3.8rem; }
     h2 { font-size: 2.2rem; }
     .section-title { font-size: 2.2rem; }
+
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 50px;
+    }
 
     .hero-section {
         flex-direction: column;
@@ -915,4 +920,9 @@ a:hover {
     .footer-logo { margin: 0 auto 15px auto; }
     .about-us-footer p { max-width: 100%; }
     .footer-social-icons { justify-content: center; }
+}
+
+/* Add a class for error styling */
+.input-error {
+    border-color: var(--secondary-color) !important;
 }
