@@ -6,34 +6,24 @@ document.addEventListener('DOMContentLoaded', () => {
             dots: true,
             infinite: true,
             speed: 800,
-            slidesToShow: 3,
+            slidesToShow: 1, // Show one item at a time on mobile
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 4000,
-            centerMode: true,
-            centerPadding: '0px',
+            centerMode: true, // Center the current item
+            centerPadding: '0px', // No padding around the center item
             responsive: [
-                {
-                    breakpoint: 1200,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                        infinite: true,
-                        dots: true,
-                        centerMode: false,
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        infinite: true,
-                        dots: true,
-                        centerMode: true,
-                        centerPadding: '0px',
-                    }
-                }
+                // You can add breakpoints here if needed, but for a mobile-first approach,
+                // the default settings above should be sufficient for small screens.
+                // Example for tablets:
+                // {
+                //     breakpoint: 768,
+                //     settings: {
+                //         slidesToShow: 2,
+                //         slidesToScroll: 1,
+                //         centerMode: false, // Disable center mode on larger screens if desired
+                //     }
+                // }
             ]
         });
     });
@@ -78,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Contact Form Validation (Improved Error Display)
+    // Contact Form Validation
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(event) {
@@ -138,22 +128,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!errorSpan) {
             errorSpan = document.createElement('span');
             errorSpan.className = 'error-message';
-            errorSpan.style.color = 'var(--secondary-color)'; // Using a variable for consistency
-            errorSpan.style.fontSize = '0.85rem';
-            errorSpan.style.display = 'block';
-            errorSpan.style.marginTop = '5px';
             parent.appendChild(errorSpan);
         }
         errorSpan.textContent = message;
         inputElement.classList.add('input-error'); // Add class for styling
-        // inputElement.style.borderColor = 'var(--secondary-color)'; // Already handled by .input-error class
     }
 
     function clearFormErrors() {
         document.querySelectorAll('.error-message').forEach(span => span.remove());
         document.querySelectorAll('.input-error').forEach(input => {
             input.classList.remove('input-error');
-            // input.style.borderColor = '#e0e0e0'; // Resetting border color is handled by removing the class
         });
     }
 });
