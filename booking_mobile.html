@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Appointment - Clean Cutz Austin</title>
+    <link rel="stylesheet" href="index_mobile.css"> <!-- Reusing main CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="booking.css"> <!-- Specific CSS for booking -->
+</head>
+<body class="booking-page">
+
+    <header class="booking-header">
+        <div class="container">
+            <a href="index_mobile.html" class="back-link" aria-label="Go back to homepage">
+                <i class="fas fa-arrow-left"></i> Back to Clean Cutz
+            </a>
+            <div class="site-logo-booking">
+                 <img src="assets/logo-white.svg" alt="Clean Cutz Logo">
+            </div>
+        </div>
+    </header>
+
+    <main class="booking-main">
+        <section class="booking-form-section">
+            <div class="container">
+                <h1 class="section-heading booking-heading">Schedule Your Style Session</h1>
+                <p class="booking-subheading">Select your desired service and time. Our expert barbers are ready to serve you.</p>
+
+                <form id="bookingForm" action="submit_booking.php" method="POST"> <!-- Example action -->
+                    <div class="form-group">
+                        <label for="service">Choose Service</label>
+                        <div class="select-wrapper">
+                            <select id="service" name="service" required>
+                                <option value="" disabled selected>-- Select a Service --</option>
+                                <option value="signature-cut">The Signature Cut - $75</option>
+                                <option value="artisan-fade">Artisan Fade - $85</option>
+                                <option value="luxury-shave">Luxury Shave - $65</option>
+                                <option value="beard-refinement">Beard Refinement - $50</option>
+                                <option value="complete-package">The Complete Package - $130</option>
+                            </select>
+                            <i class="fas fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Preferred Date</label>
+                        <input type="date" id="date" name="date" required min="2023-01-01"> <!-- Example min date -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Preferred Time</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="barber">Select Barber (Optional)</label>
+                        <div class="select-wrapper">
+                            <select id="barber" name="barber">
+                                <option value="" disabled selected>-- Any Barber --</option>
+                                <option value="alex-johnson">Alex Johnson</option>
+                                <option value="sam-lee">Sam Lee</option>
+                                <option value="chris-evans">Chris Evans</option>
+                            </select>
+                            <i class="fas fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Special Requests / Notes</label>
+                        <textarea id="notes" name="notes" rows="4" placeholder="Any specific instructions or notes for your barber?"></textarea>
+                    </div>
+
+                    <button type="submit" class="main-cta booking-submit-btn">CONFIRM BOOKING</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer booking-footer">
+        <div class="footer-content">
+            <p class="copyright">© 2025 Clean Cutz. All Rights Reserved.</p>
+            <div class="footer-contact">
+                <p><i class="fas fa-map-marker-alt"></i> 123 Barber Lane, Austin, TX 78701</p>
+                <p><i class="fas fa-phone"></i> <a href="tel:+15125550123">+1 (512) 555-0123</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="booking.js"></script>
+</body>
+</html>
