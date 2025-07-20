@@ -3,287 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clean Cutz - Austin's Premier Barber Lounge</title>
+    <title>Clean Cutz - Masterful Grooming</title>
     <link rel="stylesheet" href="index_mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="loader">
-        <svg class="loader-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 0C27.9086 0 10 17.9086 10 40C10 57.4929 20.1055 72.7488 35.8579 80.4338C43.4408 83.9777 51.4535 85.5004 59.4967 85.5004C79.0204 85.5004 94.4999 69.4555 94.4999 49.9999C94.4999 30.5444 79.0204 14.5 59.4967 14.5C49.4535 14.5 41.4408 12.9777 33.8579 9.43383C18.1055 2.74884 0 22.0108 0 40C0 72.5912 27.9086 100 50 100C72.0914 100 99.9999 72.5912 99.9999 40C99.9999 25.0001 90.6058 11.5914 77.1421 5.66617C73.4408 4.34341 66.4535 3.5004 59.4967 3.5004C50 3.5004 40.5444 5.66617 32.8579 9.43383C20.1055 17.2512 10 28.1796 10 40Z" fill="url(#paint0_linear_1_4)"/>
-            <circle cx="60" cy="40" r="18" fill="#E0C36F"/>
-            <defs>
-                <linearGradient id="paint0_linear_1_4" x1="50" y1="0" x2="50" y2="100" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#E0C36F"/>
-                    <stop offset="1" stop-color="#C4A85A"/>
-                </linearGradient>
-            </defs>
-        </svg>
-    </div>
-
-    <!-- HERO SECTION -->
-    <header class="hero" id="hero">
-        <div class="hero-background-image">
-            <img src="assets/hero-main-image.jpg" alt="Clean Cutz Barbershop interior with modern styling" class="hero-main-img">
+    <header>
+        <div class="logo">
+            <!-- Placeholder for your logo or initial animation element -->
+            <img src="path/to/your/logo.png" alt="Clean Cutz Logo">
         </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="char">C</span><span class="char">L</span><span class="char">E</span><span class="char">A</span><span class="char">N</span>
-                <span class="char"> </span>
-                <span class="char">C</span><span class="char">U</span><span class="char">T</span><span class="char">Z</span>
-            </h1>
-            <p class="hero-subtitle">Crafting Style, Defining Confidence.</p>
-            <a href="booking_mobile.html" class="main-cta" aria-label="Book your appointment">BOOK YOUR APPOINTMENT</a>
-        </div>
-        <a href="#about" class="scroll-indicator" aria-label="Scroll down to learn more">
-            <div class="arrow"></div>
-        </a>
+        <nav>
+            <ul>
+                <li><a href="index_mobile.html">Home</a></li>
+                <li><a href="_services.html">Services</a></li>
+                <li><a href="_gallery.html">Gallery</a></li>
+                <li><a href="_about.html">About Us</a></li>
+                <li><a href="_contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- Mobile Menu Toggle (optional, for hamburger menu) -->
+        <!-- <div class="menu-toggle">☰</div> -->
     </header>
 
-    <!-- NAVIGATION -->
-    <div class="menu-container">
-        <button class="menu-button" aria-label="Toggle Menu">
-            <div class="burger-icon">
-                <span class="line line-1"></span>
-                <span class="line line-2"></span>
-                <span class="line line-3"></span>
+    <main>
+        <section class="hero">
+            <!-- Replace with either a video background or a slider -->
+            <video autoplay muted loop id="heroVideo">
+                <source src="path/to/your/hero-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <!-- Or use a slider structure like this -->
+            <!--
+            <div class="slider">
+                <div class="slide" style="background-image: url('path/to/slide1.jpg');"></div>
+                <div class="slide" style="background-image: url('path/to/slide2.jpg');"></div>
+                <div class="slide" style="background-image: url('path/to/slide3.jpg');"></div>
             </div>
-        </button>
-    </div>
-
-    <nav class="nav-overlay" id="nav-overlay">
-        <div class="nav-links">
-            <a href="#about" class="nav-link"><span>01</span> Our Story</a>
-            <a href="#services" class="nav-link"><span>02</span> Services</a>
-            <a href="#gallery" class="nav-link"><span>03</span> Showcase</a>
-            <a href="#testimonials" class="nav-link"><span>04</span> Reviews</a>
-            <a href="#contact" class="nav-link"><span>05</span> Contact Us</a>
-            <a href="booking_mobile.html" class="nav-link nav-cta-link">Book Now</a>
-        </div>
-    </nav>
-
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
-        <section id="about" class="content-section reveal">
-            <div class="section-header">
-                <h2 class="section-heading">WHERE PASSION MEETS PRECISION</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-image-wrapper">
-                    <img src="assets/barber-at-work.jpg" alt="Master barber meticulously cutting hair" class="about-image">
-                </div>
-                <div class="about-text-content">
-                    <p class="intro-paragraph">Welcome to Clean Cutz, Austin's premier destination for exceptional barbering. We're not just about haircuts; we're about crafting an experience.</p>
-                    <p>Founded on the principles of artistry, precision, and client care, our lounge offers a refined atmosphere where every detail matters. From classic scissor cuts to modern fades and luxurious shaves, our skilled barbers are dedicated to transforming your look and boosting your confidence.</p>
-                    <div class="cta-buttons-about">
-                        <a href="booking_mobile.html" class="main-cta" aria-label="Book your session">BOOK YOUR SESSION</a>
-                        <a href="#services" class="secondary-cta" aria-label="Discover our services">EXPLORE SERVICES</a>
-                    </div>
-                </div>
+            -->
+            <div class="hero-content">
+                <h1>Experience the Art of Grooming</h1>
+                <p>Precision cuts, exceptional style, and unparalleled service.</p>
+                <a href="_book_appointment.html" class="cta-button">Book Your Appointment</a>
             </div>
         </section>
 
-        <section id="services" class="content-section reveal">
-            <div class="section-header">
-                <h2 class="section-heading">MASTERFUL BARBERING SERVICES</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-item">
-                    <div class="service-icon"><i class="fas fa-cut"></i></div>
-                    <h3 class="service-title">The Signature Cut</h3>
-                    <p class="service-price">$75</p>
-                    <p class="service-description">A tailored haircut focusing on style, shape, and precision, finished with expert styling.</p>
+        <section class="section featured-services">
+            <div class="container">
+                <h2>Our Signature Services</h2>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <img src="path/to/service1.jpg" alt="Signature Haircut">
+                        <h3>Signature Haircut</h3>
+                        <p>A classic cut tailored to your style and preferences.</p>
+                    </div>
+                    <div class="service-item">
+                        <img src="path/to/service2.jpg" alt="Beard Trim">
+                        <h3>Beard Trim & Shape</h3>
+                        <p>Sculpt and refine your beard for a polished look.</p>
+                    </div>
+                    <div class="service-item">
+                        <img src="path/to/service3.jpg" alt="Hot Towel Shave">
+                        <h3>Hot Towel Shave</h3>
+                        <p>A luxurious and smooth traditional shave.</p>
+                    </div>
                 </div>
-                <div class="service-item">
-                    <div class="service-icon"><i class="fas fa-layer-group"></i></div>
-                    <h3 class="service-title">Artisan Fade</h3>
-                    <p class="service-price">$85</p>
-                    <p class="service-description">Flawless skin fades, tapers, and blends executed with meticulous attention to detail.</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon"><i class="fas fa-spa"></i></div>
-                    <h3 class="service-title">Luxury Shave</h3>
-                    <p class="service-price">$65</p>
-                    <p class="service-description">Experience ultimate relaxation with a hot towel shave, premium oils, and a smooth finish.</p>
-                </div>
-                 <div class="service-item">
-                    <div class="service-icon"><i class="fas fa-beard"></i></div>
-                    <h3 class="service-title">Beard Refinement</h3>
-                    <p class="service-price">$50</p>
-                    <p class="service-description">Expert shaping, trimming, and conditioning to perfect your beard.</p>
-                </div>
-                 <div class="service-item">
-                    <div class="service-icon"><i class="fas fa-star-half-alt"></i></div>
-                    <h3 class="service-title">The Complete Package</h3>
-                    <p class="service-price">$130</p>
-                    <p class="service-description">Includes Signature Cut and Luxury Shave for the ultimate grooming experience.</p>
-                </div>
+                <a href="_services.html" class="btn">View All Services</a>
             </div>
         </section>
 
-        <section id="gallery" class="content-section reveal">
-            <div class="section-header">
-                <h2 class="section-heading">OUR PORTFOLIO OF STYLE</h2>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="assets/gallery-modern-fade.jpg" alt="Modern fade with sharp lines">
-                    <div class="gallery-hover-info">
-                        <span class="gallery-hover-text">Modern Fade</span>
+        <section class="section gallery-preview">
+            <div class="container">
+                <h2>Fresh Styles</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="path/to/gallery1.jpg" alt="Hair Style 1">
+                        <h3>Modern Fade</h3>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="path/to/gallery2.jpg" alt="Hair Style 2">
+                        <h3>Classic Pompadour</h3>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="path/to/gallery3.jpg" alt="Hair Style 3">
+                        <h3>Textured Crop</h3>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="path/to/gallery4.jpg" alt="Hair Style 4">
+                        <h3>Sharp Lines</h3>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery-classic-cut.jpg" alt="Classic side-part haircut">
-                    <div class="gallery-hover-info">
-                        <span class="gallery-hover-text">Classic Cut</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery-beard-detail.jpg" alt="Detailed beard trim and shaping">
-                    <div class="gallery-hover-info">
-                        <span class="gallery-hover-text">Beard Refinement</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/gallery-textured-style.jpg" alt="Textured hairstyle with natural flow">
-                    <div class="gallery-hover-info">
-                        <span class="gallery-hover-text">Textured Style</span>
-                    </div>
-                </div>
-                 <div class="gallery-item">
-                    <img src="assets/gallery-barber-chair.jpg" alt="Client relaxing in a premium barber chair">
-                    <div class="gallery-hover-info">
-                        <span class="gallery-hover-text">The Lounge Experience</span>
-                    </div>
-                </div>
-                 <div class="gallery-item">
-                    <img src="assets/gallery-precision-tools.jpg" alt="Close-up of professional barber tools">
-                    <div class="gallery-hover-info">
-                        <span class="gallery-hover-text">Expert Tools</span>
-                    </div>
-                </div>
-            </div>
-             <div class="gallery-cta-container">
-                <a href="https://www.instagram.com/cleancutz_austin/" target="_blank" class="main-cta" aria-label="Follow us on Instagram for more styles">VIEW MORE ON INSTAGRAM</a>
+                <a href="_gallery.html" class="btn">Explore Gallery</a>
             </div>
         </section>
 
-        <section id="testimonials" class="content-section reveal">
-            <div class="section-header">
-                <h2 class="section-heading">HEAR FROM OUR VALUED CLIENTS</h2>
-            </div>
-            <div class="testimonial-slider-container">
+        <section class="section testimonials">
+            <div class="container">
+                <h2>What Our Clients Say</h2>
                 <div class="testimonial-slider">
-                    <div class="testimonial-card">
-                        <div class="testimonial-quote">
-                            <i class="fas fa-quote-left quote-icon"></i>
-                            <p>Clean Cutz is an absolute gem. The atmosphere is sophisticated yet relaxed, and the barbers are true artists. My fade has never looked better!</p>
-                            <i class="fas fa-quote-right quote-icon"></i>
-                        </div>
-                        <div class="testimonial-author-details">
-                            <img src="assets/client-avatar-1.jpg" alt="Client Avatar - John D." class="avatar-img">
-                            <div class="author-info">
-                                <h4 class="author-name">John D.</h4>
-                                <p class="author-title">Austin Resident</p>
-                            </div>
-                        </div>
+                    <!-- Placeholder for carousel items -->
+                    <div class="testimonial-item">
+                        <p>"The best haircut I've ever had! Professional and friendly service."</p>
+                        <p class="author">- John D.</p>
                     </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-quote">
-                            <i class="fas fa-quote-left quote-icon"></i>
-                            <p>The luxury shave was an incredible experience – pure relaxation. The team at Clean Cutz truly understands client service.</p>
-                            <i class="fas fa-quote-right quote-icon"></i>
-                        </div>
-                        <div class="testimonial-author-details">
-                            <img src="assets/client-avatar-2.jpg" alt="Client Avatar - Sarah K." class="avatar-img">
-                            <div class="author-info">
-                                <h4 class="author-name">Sarah K.</h4>
-                                <p class="author-title">New Client</p>
-                            </div>
-                        </div>
+                    <div class="testimonial-item">
+                        <p>"Clean Cutz always delivers. I leave feeling sharp and confident."</p>
+                        <p class="author">- Michael S.</p>
                     </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-quote">
-                            <i class="fas fa-quote-left quote-icon"></i>
-                            <p>Professional, skilled, and friendly. They made sure I was happy with every step. Highly recommend Clean Cutz for anyone in Austin.</p>
-                            <i class="fas fa-quote-right quote-icon"></i>
-                        </div>
-                        <div class="testimonial-author-details">
-                            <img src="assets/client-avatar-3.jpg" alt="Client Avatar - Michael R." class="avatar-img">
-                            <div class="author-info">
-                                <h4 class="author-name">Michael R.</h4>
-                                <p class="author-title">Local Professional</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Slider navigation buttons would go here if implementing JS slider -->
-            </div>
-        </section>
-
-        <section id="contact" class="content-section reveal">
-            <div class="section-header">
-                <h2 class="section-heading">GET IN TOUCH</h2>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Visit Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Barber Lane, Austin, TX 78701</p>
-                    <h3>Call Us</h3>
-                    <p><i class="fas fa-phone"></i> <a href="tel:+15125550123" aria-label="Call Clean Cutz">+1 (512) 555-0123</a></p>
-                    <h3>Email Us</h3>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@cleancutz.com" aria-label="Email Clean Cutz">info@cleancutz.com</a></p>
-                    <div class="contact-social-icons">
-                         <a href="https://www.instagram.com/cleancutz_austin/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                         <a href="https://www.facebook.com/cleancutz" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-                <div class="contact-form-container">
-                    <h3>Send a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-field">
-                            <input type="text" id="contactName" name="contactName" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-field">
-                            <input type="email" id="contactEmail" name="contactEmail" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-field">
-                            <textarea id="contactMessage" name="contactMessage" placeholder="Your Message" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="main-cta">SEND MESSAGE</button>
-                    </form>
+                    <!-- Add more testimonials as needed -->
                 </div>
             </div>
         </section>
 
+        <section class="section artist-feature">
+            <div class="container">
+                <h2>Local Flair: Featuring Austin's Own [Artist Name]</h2>
+                <div class="artist-feature">
+                    <img src="path/to/austin-artist.jpg" alt="Austin Artist Work">
+                    <div>
+                        <h3>[Artist Name] - Style & Threads</h3>
+                        <p>Discover the intersection of cutting edge barbering and unique Austin street style with [Artist Name]. Explore their latest clothing collection inspired by the vibrant energy of the city and the artistry found right here at Clean Cutz.</p>
+                        <a href="_artist_spotlight.html" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="assets/logo-white.svg" alt="Clean Cutz Logo">
+    <footer>
+        <div class="container">
+            <p>Clean Cutz</p>
+            <p>123 Main Street, Austin, TX 78701</p>
+            <p>Phone: (512) 555-1234</p>
+            <p>Email: info@cleancutz.com</p>
+            <div class="social-icons">
+                <!-- Add social media icons/links here -->
             </div>
-            <nav class="footer-nav">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#testimonials">Reviews</a>
-                <a href="#contact">Contact</a>
-                <a href="booking_mobile.html">Book</a>
-            </nav>
-            <div class="footer-social-links">
-                <a href="https://www.instagram.com/cleancutz_austin/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/cleancutz" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            </div>
-            <p class="footer-address"><i class="fas fa-map-marker-alt"></i> 123 Barber Lane, Austin, TX 78701</p>
-            <p class="footer-phone"><i class="fas fa-phone"></i> <a href="tel:+15125550123">+1 (512) 555-0123</a></p>
-            <p class="copyright">© 2025 Clean Cutz. All Rights Reserved.</p>
+            <p>© 2025 Clean Cutz. All rights reserved.</p>
         </div>
     </footer>
 
