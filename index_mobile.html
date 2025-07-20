@@ -3,282 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clean Cutz - Refined Grooming Experience</title>
-    <link rel="stylesheet" href="index_mobile.css">
+    <title>Clean Cutz - Austin Barbershop</title>
+    <link rel="stylesheet" href="index_mobile.css"> <!-- Corrected link -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <header class="site-header">
-        <div class="header-container">
-            <div class="logo-container">
-                <a href="#home">
-                    <img src="assets/images/logo-clean-cutz.png" alt="Clean Cutz Logo" class="site-logo">
-                </a>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#about">The Craft</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="header-actions">
-                <a href="_book_appointment.html" class="btn btn-book-appointment">Book Now</a>
-                <button class="mobile-nav-toggle" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Clean Cutz Logo" class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#book">Book Appointment</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
         </div>
     </header>
 
-    <main>
-        <section id="home" class="hero-section hero-split-layout">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="subtitle-text">Welcome to</span>
-                    <span class="main-title-large">Clean Cutz</span>
-                    <span class="title-tagline">Mastering the Art of Modern Grooming</span>
-                </h1>
-                <p class="hero-description">Experience precision haircuts, expert beard styling, and a sophisticated atmosphere. We transform your look with unparalleled skill and attention to detail.</p>
-                <div class="hero-cta-buttons">
-                    <a href="_book_appointment.html" class="btn btn-primary btn-large">Schedule Your Visit</a>
-                    <a href="#services" class="btn btn-secondary btn-large">View Services</a>
-                </div>
-            </div>
-            <div class="hero-image-container">
-                <!-- Stock Image Suggestion: A high-quality, slightly moody shot of a barber working on a client's hair from the side/back. -->
-                <img src="assets/images/hero-barber-main.jpg" alt="Barber meticulously cutting hair" class="hero-main-image">
-                <div class="hero-image-overlay"></div>
-                <div class="hero-small-images">
-                    <!-- Stock Image Suggestion: Close-up of barber's hands using scissors and comb. -->
-                    <img src="assets/images/hero-barber-detail1.jpg" alt="Barber using scissors" class="small-image left-small">
-                    <!-- Stock Image Suggestion: Close-up of a perfectly groomed beard. -->
-                    <img src="assets/images/hero-barber-detail2.jpg" alt="Close up of beard trim" class="small-image right-small">
-                </div>
-            </div>
-        </section>
+    <section id="home" class="hero-section">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1>CLEAN CUTZ</h1>
+            <p>YOUR GO-TO PLACE FOR THE PERFECT CUT AND SHAVE!</p>
+            <a href="#book" class="cta-button">BOOK NOW</a>
+        </div>
+    </section>
 
-        <section id="services" class="services-section section-padding bg-light-gray">
-            <div class="container">
-                <h2 class="section-title">Our Signature Services</h2>
-                <p class="section-subtitle">Discover the range of expert grooming services we offer.</p>
-                <div class="services-grid-responsive">
-                    <div class="service-card">
-                        <div class="service-image-wrapper">
-                            <!-- Stock Image Suggestion: Classic, clean haircut style (e.g., a fade, a textured crop). -->
-                            <img src="assets/images/services/haircut-main.jpg" alt="Classic Haircut Service">
-                        </div>
-                        <div class="service-card-content">
-                            <h3 class="service-title">Elite Haircuts</h3>
-                            <p class="service-description">From sharp fades to timeless styles, our haircuts are tailored to your unique look.</p>
-                            <span class="price-tag">$50+</span>
-                            <a href="_services.html#haircuts" class="read-more-link">Explore <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-image-wrapper">
-                            <!-- Stock Image Suggestion: A well-groomed beard, perhaps with some styling product. -->
-                            <img src="assets/images/services/beard-trim.jpg" alt="Professional Beard Trim">
-                        </div>
-                        <div class="service-card-content">
-                            <h3 class="service-title">Beard & Mustache</h3>
-                            <p class="service-description">Precision shaping, trimming, and grooming for the perfect beard.</p>
-                            <span class="price-tag">$35+</span>
-                            <a href="_services.html#beards" class="read-more-link">Explore <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-image-wrapper">
-                            <!-- Stock Image Suggestion: A luxurious hot towel shave or a straight razor shave. -->
-                            <img src="assets/images/services/shave-luxury.jpg" alt="Luxurious Hot Towel Shave">
-                        </div>
-                        <div class="service-card-content">
-                            <h3 class="service-title">Luxury Shaves</h3>
-                            <p class="service-description">Indulge in a traditional hot towel shave for ultimate smoothness.</p>
-                            <span class="price-tag">$45+</span>
-                            <a href="_services.html#shaves" class="read-more-link">Explore <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section id="services" class="services-section">
+        <h2>WHAT WE OFFER</h2>
+        <div class="services-list">
+            <ul>
+                <li><span class="checkmark">✓</span> Haircuts: For men, women, and kids</li>
+                <li><span class="checkmark">✓</span> Shaves & Beard Grooming</li>
+                <li><span class="checkmark">✓</span> Hair Styling & Color</li>
+                <li><span class="checkmark">✓</span> Walk-ins Welcome!</li>
+            </ul>
+        </div>
+        <div class="scissors-icon-container">
+            <img src="scissors-icon.png" alt="Scissors Icon" class="scissors-icon">
+        </div>
+    </section>
 
-        <section id="gallery" class="gallery-section section-padding">
-            <div class="container">
-                <h2 class="section-title">Our Portfolio of Styles</h2>
-                <p class="section-subtitle">Witness the transformation and artistry we bring to every client.</p>
-                <div class="gallery-carousel">
-                    <!-- Stock Image Suggestions for Gallery: -->
-                    <!-- Various modern and classic haircuts, sharp fades, styled pompadours, textured crops, neat beard trims, close-ups of sharp lines. -->
-                    <div class="gallery-item">
-                        <img src="assets/images/gallery/style-fade.jpg" alt="Modern Fade Haircut">
-                        <div class="gallery-caption">Modern Fade</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/gallery/style-pompadour.jpg" alt="Classic Pompadour Hairstyle">
-                        <div class="gallery-caption">Classic Pompadour</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/gallery/style-textured.jpg" alt="Textured Crop Haircut">
-                        <div class="gallery-caption">Textured Crop</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/gallery/style-caesar.jpg" alt="Caesar Cut Hairstyle">
-                        <div class="gallery-caption">Caesar Cut</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/gallery/style-undercut.jpg" alt="Undercut Hairstyle">
-                        <div class="gallery-caption">Stylish Undercut</div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/images/gallery/style-beard-trim.jpg" alt="Impeccable Beard Trim">
-                        <div class="gallery-caption">Perfect Beard Trim</div>
-                    </div>
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <div class="owner-info">
+                <div class="owner-image-container">
+                    <img src="anthony-logo.png" alt="Anthony's Logo" class="owner-logo">
                 </div>
-                <div class="gallery-cta">
-                    <a href="_gallery.html" class="btn btn-secondary">View Full Gallery</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="about-craft section-padding bg-dark text-white">
-            <div class="container">
-                <div class="about-craft-content">
-                    <div class="about-text-block">
-                        <h2 class="section-title">The Clean Cutz Craft</h2>
-                        <p class="section-subtitle">Dedicated to Excellence in Barbering</p>
-                        <p>At Clean Cutz, we blend heritage barbering techniques with contemporary style. Our barbers are seasoned artisans, committed to providing a bespoke grooming experience. We believe in the power of a great haircut and a well-maintained beard to boost confidence and define personal style. Step into our shop and experience the difference that passion and precision make.</p>
-                        <a href="_about.html" class="btn btn-accent">Meet Our Artisans</a>
-                    </div>
-                    <div class="about-image-gallery">
-                        <!-- Stock Image Suggestion: A barber intently focused on a client's hair, showing skill. -->
-                        <img src="assets/images/about-barber-at-work.jpg" alt="Barber skillfully working on client" class="about-main-image">
-                        <div class="about-image-caption">Skill in every stroke.</div>
-                        <!-- Stock Image Suggestion: A stylish, clean interior of a modern barbershop. -->
-                        <img src="assets/images/about-shop-interior.jpg" alt="Stylish barbershop interior" class="about-secondary-image">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="local-artist" class="local-artist-feature section-padding">
-            <div class="container">
-                <div class="artist-feature-wrapper">
-                    <div class="artist-image-section">
-                        <!-- Stock Image Suggestion: A stylish portrait of a creative individual, perhaps related to fashion or local art. -->
-                        <img src="assets/images/austin-artist-feature-photo.jpg" alt="Austin Artist Showcase Photo" class="artist-showcase-img">
-                    </div>
-                    <div class="artist-text-section">
-                        <h2 class="section-title">Austin's Creative Heartbeat</h2>
-                        <p class="section-subtitle">In Collaboration with Local Talent</p>
-                        <h3><span class="highlight-text">Style Meets Street:</span> Featuring [Artist Name]</h3>
-                        <p>We champion Austin's dynamic creative scene. This feature highlights [Artist Name], an incredible local artist known for their distinctive clothing designs that capture the city's unique vibe. Explore their latest collection and see how art and barbering intersect to inspire.</p>
-                        <a href="_artist_spotlight.html" class="btn btn-primary">Discover Local Style</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact-section section-padding bg-light-gray">
-            <div class="container">
-                <h2 class="section-title">Connect With Us</h2>
-                <p class="section-subtitle">Book your appointment or send us a message; we're here to help.</p>
-                <div class="contact-layout">
-                    <div class="contact-form-container">
-                        <form id="contactForm" class="contact-form">
-                            <div class="form-row">
-                                <input type="text" id="name" name="name" placeholder="Your Full Name" required>
-                                <input type="email" id="email" name="email" placeholder="Your Email Address" required>
-                            </div>
-                            <div class="form-row">
-                                <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
-                                <input type="text" id="service" name="service" placeholder="Interested Service (Optional)">
-                            </div>
-                            <div class="form-group">
-                                <textarea id="message" name="message" placeholder="Your Message Here" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Send Inquiry</button>
-                        </form>
-                    </div>
-                    <div class="contact-details">
-                        <div class="contact-info-block">
-                            <h3 class="info-title">Visit Our Shop</h3>
-                            <p>123 Style Street,<br> Austin, TX 78701</p>
-                        </div>
-                        <div class="contact-info-block">
-                            <h3 class="info-title">Call Us</h3>
-                            <p>(512) 555-1234</p>
-                        </div>
-                        <div class="contact-info-block">
-                            <h3 class="info-title">Opening Hours</h3>
-                            <p>Mon - Fri: 9 AM - 7 PM</p>
-                            <p>Sat: 9 AM - 6 PM</p>
-                            <p>Sun: Closed</p>
-                        </div>
-                        <div class="contact-social">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content-grid">
-                <div class="footer-column about-us-footer">
-                    <img src="assets/images/logo-clean-cutz-white.png" alt="Clean Cutz Logo White" class="footer-logo">
-                    <p>Experience the finest grooming services at Clean Cutz, where precision, style, and customer satisfaction are paramount.</p>
-                </div>
-                <div class="footer-column footer-nav-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#about">The Craft</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column footer-services">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="_services.html#haircuts">Elite Haircuts</a></li>
-                        <li><a href="_services.html#beards">Beard & Mustache</a></li>
-                        <li><a href="_services.html#shaves">Luxury Shaves</a></li>
-                        <li><a href="_services.html#styling">Styling Products</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column footer-contact-info">
-                    <h4>Get In Touch</h4>
-                    <p>123 Style Street,<br> Austin, TX 78701</p>
-                    <p>Phone: <a href="tel:+15125551234">(512) 555-1234</a></p>
-                    <p>Email: <a href="mailto:info@cleancutz.com">info@cleancutz.com</a></p>
-                </div>
-            </div>
-            <div class="footer-bottom-bar">
-                <p>© 2025 Clean Cutz. All Rights Reserved. | Crafted with Precision.</p>
-                <div class="footer-social-icons">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <h3>ANTHONY</h3>
+                <p class="title">Owner & Master Barber</p>
+                <p class="description">
+                    Anthony is not just a barber; he's an artist and designer with a passion for creating unique styles. Based in the heart of Austin, Texas, his creative vision extends to custom shirt designs, reflecting his dedication to craftsmanship and personal expression. Experience the artistry in every cut and design.
+                </p>
+                <div class="shirt-design-preview">
+                    <!-- Placeholder for shirt design preview -->
+                    <p>Custom Shirt Designs Available!</p>
                 </div>
             </div>
         </div>
+    </section>
+
+    <section id="book" class="book-section">
+        <h2>BOOK YOUR APPOINTMENT</h2>
+        <p>Ready for a fresh look? Book your next cut with us!</p>
+        <a href="tel:123-456-7890" class="book-button phone">CALL US: 123-456-7890</a>
+        <a href="https://www.cleancutz.com" target="_blank" rel="noopener noreferrer" class="book-button website">VISIT OUR WEBSITE: CLEAN CUTZ.COM</a>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>CONTACT US</h2>
+        <div class="contact-details">
+            <p><span class="icon">☎</span> 123-456-7890</p>
+            <p><span class="icon">✉</span> info@cleancutz.com</p>
+            <p><span class="icon"></span> Austin, TX</p>
+        </div>
+        <div class="social-media">
+            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+            <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Clean Cutz. All rights reserved.</p>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script src="index_mobile.js"></script>
+
+    <script src="index_mobile.js"></script> <!-- Corrected link -->
 </body>
 </html>
