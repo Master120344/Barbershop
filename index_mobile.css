@@ -27,7 +27,7 @@ h1, h2, h3 {
     margin-bottom: 0.5em;
 }
 
-h1 { font-size: 2rem; } /* Adjusted for space in header */
+h1 { font-size: 2rem; }
 h2 { font-size: 2rem; text-align: center; margin-top: 1.5em; }
 h3 { font-size: 1.5rem; text-align: center; margin-top: 1em; color: var(--text-color); }
 
@@ -57,7 +57,7 @@ a:hover {
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: background-color 0.3s ease, color 0.3s ease;
-    cursor: pointer; /* Added cursor for clarity */
+    cursor: pointer;
 }
 
 .cta-button:hover {
@@ -65,21 +65,19 @@ a:hover {
     color: var(--primary-color);
 }
 
-/* Specific style for the moved BOOK NOW button */
 .book-now-button {
-    margin-top: 1.5em; /* Add some space above it */
-    display: block; /* Make it take full width for better tap target */
-    width: 80%; /* Adjust width */
-    max-width: 250px; /* Limit width */
+    margin-top: 1.5em;
+    display: block;
+    width: 80%;
+    max-width: 250px;
     margin-left: auto;
     margin-right: auto;
 }
 
-
 section {
     padding: 40px 20px;
     text-align: center;
-    position: relative; /* For background elements */
+    position: relative;
     overflow: hidden;
 }
 
@@ -97,37 +95,25 @@ header {
     border-bottom: 2px solid var(--secondary-color);
 }
 
-.logo-container {
-    display: flex; /* Use flex to align logo and title */
-    align-items: center;
-}
-
-.logo {
-    height: 50px; /* Adjust as needed */
-    width: auto;
-    display: block;
-    margin-right: 15px; /* Space between logo and title */
-}
-
 .site-title {
     font-family: var(--font-oswald);
     font-weight: 700;
-    font-size: 1.7rem; /* Adjusted size */
+    font-size: 1.7rem;
     text-transform: uppercase;
     color: var(--secondary-color);
     letter-spacing: 1px;
-    flex-grow: 1; /* Allow title to take available space */
-    text-align: left; /* Align title to the left */
+    flex-grow: 1;
+    text-align: left;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: none; /* Hidden by default for mobile */
+    display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px; /* Position below header */
+    top: 60px;
     right: 20px;
     background-color: var(--primary-color);
     border: 1px solid var(--secondary-color);
@@ -167,7 +153,7 @@ nav ul li a:hover {
     width: 30px;
     height: 25px;
     cursor: pointer;
-    margin-left: 15px; /* Space between nav and hamburger */
+    margin-left: 15px;
 }
 
 .hamburger .line {
@@ -179,27 +165,26 @@ nav ul li a:hover {
 /* --- Hero Section --- */
 .hero-section {
     position: relative;
-    height: 50vh; /* Adjusted height for more content visibility */
+    height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('barber-background.jpg') no-repeat center center/cover; /* Placeholder image */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('barber-background.jpg') no-repeat center center/cover;
     background-size: cover;
     box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
 }
 
-.hero-content h1 {
-    font-size: 2.2rem; /* Smaller heading here to make space */
-    color: var(--text-color); /* Changed color for better contrast with background */
-    margin-bottom: 0;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+.hero-logo {
+    width: 80%;
+    max-width: 250px; /* Adjust size as needed */
+    height: auto;
 }
 
 /* --- Services Section --- */
 .services-section {
     background-color: var(--dark-grey);
-    padding-bottom: 80px; /* Extra padding for the icon */
+    padding-bottom: 80px;
 }
 
 .services-section h2 {
@@ -228,7 +213,7 @@ nav ul li a:hover {
     font-size: 1.4rem;
     margin-right: 15px;
     display: inline-block;
-    width: 25px; /* Ensures consistent spacing */
+    width: 25px;
     text-align: center;
 }
 
@@ -236,15 +221,14 @@ nav ul li a:hover {
     position: absolute;
     bottom: 0;
     right: 10px;
-    opacity: 0.2; /* Subtle appearance */
+    opacity: 0.2;
     transform: rotate(-30deg);
 }
 
 .scissors-icon {
-    width: 200px; /* Large icon for background effect */
+    width: 200px;
     height: auto;
 }
-
 
 /* --- About Section --- */
 .about-section {
@@ -269,7 +253,7 @@ nav ul li a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--dark-grey); /* Fallback */
+    background-color: var(--dark-grey);
 }
 
 .owner-logo {
@@ -353,17 +337,6 @@ nav ul li a:hover {
     color: var(--primary-color);
 }
 
-.book-button.website {
-    background-color: transparent;
-    color: var(--secondary-color);
-    border-color: var(--secondary-color);
-}
-
-.book-button.website:hover {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-}
-
 /* --- Contact Section --- */
 .contact-section {
     background-color: var(--primary-color);
@@ -418,13 +391,13 @@ footer {
     font-size: 0.85rem;
 }
 
-/* --- Responsive Adjustments (Mobile First - these are for larger screens but good to have for reference if expanding) --- */
+/* --- Responsive Adjustments --- */
 @media (min-width: 768px) {
-    h1 { font-size: 3.5rem; }
     h2 { font-size: 2.5rem; }
     h3 { font-size: 1.8rem; }
 
     .hero-section { height: 70vh; }
+    .hero-logo { max-width: 350px; }
 
     .services-list ul {
         max-width: 450px;
