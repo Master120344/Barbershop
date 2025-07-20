@@ -1,104 +1,193 @@
 // index_mobile.js
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Initial Logo Animation ---
-    // This is a conceptual placeholder. Actual animation might require more complex JS or CSS.
-    const logoContainer = document.querySelector('.logo'); // Assuming your logo is in a div with class 'logo'
-    if (logoContainer) {
-        // Example: Add a class to trigger a CSS animation
-        logoContainer.classList.add('animate-logo-in');
-
-        // You would typically have CSS animations defined in index_mobile.css
-        // For example:
-        /*
-        .logo {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-        }
-        .logo.animate-logo-in {
-            opacity: 1;
-            transform: scale(1);
-        }
-        */
-    }
-
-    // --- Smooth Scrolling ---
-    // If you have anchor links, enable smooth scrolling
+    // --- Smooth Scrolling for Anchor Links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
     });
 
-    // --- Hero Slider (Conceptual) ---
-    // If you implement a slider, add its logic here
-    // Example: Basic slider logic
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.hero .slide'); // Assuming .slide elements within .hero
+    // --- Mobile Navigation Toggle ---
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const navMenu = document.querySelector('nav ul');
 
-    function showSlides() {
-        if (slides.length === 0) return;
+    if (mobileNavToggle && navMenu) {
+        mobileNavToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileNavToggle.querySelector('i').classList.toggle('fa-times'); // Change icon to 'X'
+        });
 
-        // Hide all slides
-        slides.forEach(slide => slide.style.display = 'none');
-
-        // Show the current slide
-        slides[slideIndex].style.display = 'block';
-    }
-
-    // Optional: Previous/Next buttons for slider
-    // function plusSlides(n) {
-    //     slideIndex += n;
-    //     if (slideIndex >= slides.length) slideIndex = 0;
-    //     if (slideIndex < 0) slideIndex = slides.length - 1;
-    //     showSlides();
-    // }
-
-    // Auto slide changes
-    function autoPlaySlides() {
-        if (slides.length === 0) return;
-        slideIndex++;
-        if (slideIndex >= slides.length) slideIndex = 0;
-        showSlides();
-    }
-
-    // Initial display and set interval for auto-play
-    // showSlides();
-    // setInterval(autoPlaySlides, 5000); // Change slide every 5 seconds
-
-    // --- Testimonial Carousel (Conceptual) ---
-    // Implement carousel functionality for testimonials if needed
-    // You might use a library like Swiper.js or Slick Carousel, or build custom logic.
-
-    // --- Gallery Lightbox (Conceptual) ---
-    // Implement lightbox functionality for gallery images
-    // Example: Clicking an image opens it in a modal
-    const galleryImages = document.querySelectorAll('.gallery-item img');
-    if (galleryImages.length > 0) {
-        // Add event listeners to each gallery image
-        galleryImages.forEach(img => {
-            img.addEventListener('click', () => {
-                // Logic to open a modal with the image
-                // You'd need to create HTML for the modal and JS to control its visibility
-                console.log('Image clicked:', img.src); // Placeholder
+        // Close menu when a link is clicked
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileNavToggle.querySelector('i').classList.remove('fa-times');
+                mobileNavToggle.querySelector('i').classList.add('fa-bars');
             });
         });
     }
 
-    // --- Mobile Navigation Toggle ---
-    // If you have a hamburger menu:
-    const menuToggle = document.querySelector('.menu-toggle'); // Add a button with class 'menu-toggle'
-    const navMenu = document.querySelector('nav ul');
-
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+    // --- Hero Video Playback Control ---
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
+        // Ensure video plays on user interaction if autoplay is blocked
+        const heroSection = document.querySelector('.hero-section');
+        heroSection.addEventListener('click', () => {
+            if (heroVideo.paused && heroVideo.readyState >= 2) {
+                heroVideo.play().catch(error => {
+                    // Autoplay might still be blocked by browser policies
+                    console.log("Autoplay was prevented:", error);
+                });
+            }
         });
     }
+
+    // --- Fade-in Animation on Scroll ---
+    const fadeElements = document.querySelectorAll('.fade-in-element');
+    if (fadeElements.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Optional: unobserve after it's visible to improve performance
+                    // observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        fadeElements.forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    // --- Slick Carousel Initialization (if you decide to use it for testimonials or gallery) ---
+    // Example: If you had testimonials in a div with class "testimonial-slider"
+    /*
+    $(document).ready(function(){
+        $('.testimonial-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            fade: true, // or false for slide effect
+            cssEase: 'linear',
+            autoplay: true,
+            autoplaySpeed: 5000,
+            prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+            nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+        });
+    });
+    */
+
+    // --- Gallery Item Lightbox (Conceptual) ---
+    // You would typically use a library like Featherlight, Magnific Popup, or similar.
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    if (galleryItems.length > 0) {
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Logic to open a modal with the image using a library or custom implementation
+                console.log('Gallery image clicked:', item.querySelector('img').src);
+                // Example: Open a simple alert with the image source
+                alert('Image Source: ' + item.querySelector('img').src);
+            });
+        });
+    }
+
+    // --- Form Validation (Basic HTML5 and JS for custom messages) ---
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            // Prevent default submission
+            event.preventDefault();
+
+            // Basic client-side validation for required fields
+            let formIsValid = true;
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+
+            // Clear previous error messages
+            clearErrorMessages();
+
+            // Check for empty fields
+            if (nameInput.value.trim() === '') {
+                displayError(nameInput, 'Name is required.');
+                formIsValid = false;
+            }
+            if (emailInput.value.trim() === '') {
+                displayError(emailInput, 'Email is required.');
+                formIsValid = false;
+            } else if (!isValidEmail(emailInput.value)) {
+                displayError(emailInput, 'Please enter a valid email address.');
+                formIsValid = false;
+            }
+            if (messageInput.value.trim() === '') {
+                displayError(messageInput, 'Message is required.');
+                formIsValid = false;
+            }
+
+            if (formIsValid) {
+                // Submit the form programmatically if valid
+                // In a real application, you would use fetch() or XMLHttpRequest
+                // to send the form data to your server.
+                alert('Form submitted successfully! (In a real app, this would send data to the server)');
+                contactForm.reset(); // Reset the form
+            }
+        });
+    }
+
+    // Helper function to validate email format
+    function isValidEmail(email) {
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return emailPattern.test(email);
+    }
+
+    // Helper function to display an error message next to an input field
+    function displayError(inputElement, message) {
+        const formGroup = inputElement.closest('.form-group');
+        if (!formGroup) return;
+
+        const errorSpan = formGroup.querySelector('.error-message');
+        if (!errorSpan) {
+            const newErrorSpan = document.createElement('span');
+            newErrorSpan.className = 'error-message';
+            newErrorSpan.style.color = 'red';
+            newErrorSpan.style.fontSize = '0.85rem';
+            newErrorSpan.textContent = message;
+            formGroup.appendChild(newErrorSpan);
+        } else {
+            errorSpan.textContent = message;
+        }
+        inputElement.classList.add('input-error'); // Add error class for styling
+    }
+
+    // Helper function to clear all error messages and classes
+    function clearErrorMessages() {
+        document.querySelectorAll('.error-message').forEach(span => span.remove());
+        document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
+            input.classList.remove('input-error');
+        });
+    }
+
+    // --- Placeholder for initial logo animation ---
+    // This would typically involve more complex JavaScript or CSS animations.
+    // For example, a CSS animation class could be added to the logo container.
+    // Example:
+    // const logo = document.querySelector('.logo-animation img');
+    // if (logo) {
+    //     logo.style.animation = 'logoShow 1s ease-out forwards';
+    // }
+    // @keyframes logoShow { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
 
 });
