@@ -65,48 +65,24 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.classList.toggle('fa-times');
         });
 
+        // Close mobile menu when a link is clicked
         document.querySelectorAll('.main-nav ul li a').forEach(link => {
             link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                const icon = mobileNavToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    const icon = mobileNavToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
             });
         });
     }
 
-    // Hero Video Autoplay Control
-    const heroVideo = document.getElementById('heroVideo');
-    if (heroVideo) {
-        const playPromise = heroVideo.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log("Video autoplay failed:", error);
-            });
-        }
-    }
-
-    // Element Fade-in on Scroll (Simplified)
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.services-section, .gallery-section, .about-craft, .local-artist-feature, .contact-section').forEach(section => {
-        if (!section.classList.contains('hero-section')) {
-            observer.observe(section);
-        }
-    });
-
-    // Contact Form Validation
+    // Contact Form Validation (Improved Error Display)
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(event) {
+            // Prevent default submission first
             event.preventDefault();
 
             let formIsValid = true;
@@ -114,13 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const emailInput = document.getElementById('email');
             const messageInput = document.getElementById('message');
 
+            // Clear previous errors
             clearFormErrors();
 
+            // Validate Name
             if (nameInput.value.trim() === '') {
                 displayFormError(nameInput, 'Please enter your full name.');
                 formIsValid = false;
             }
 
+            // Validate Email
             const emailValue = emailInput.value.trim();
             if (emailValue === '') {
                 displayFormError(emailInput, 'Please enter your email address.');
@@ -130,47 +109,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 formIsValid = false;
             }
 
+            // Validate Message
             if (messageInput.value.trim() === '') {
                 displayFormError(messageInput, 'Please leave us a message.');
                 formIsValid = false;
             }
 
+            // If the form is valid, proceed with submission (e.g., using Fetch API or AJAX)
+            // For now, we'll just show a success alert and reset the form.
             if (formIsValid) {
                 alert('Form submitted successfully! We will be in touch shortly.');
-                contactForm.reset();
+                contactForm.reset(); // Resets the form fields
             }
         });
     }
 
     function isValidEmail(email) {
+        // Basic email validation regex
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return emailRegex.test(email);
     }
 
     function displayFormError(inputElement, message) {
-        const formGroup = inputElement.closest('.form-row, .form-group');
-        if (!formGroup) return;
+        const parent = inputElement.closest('.form-row, .form-group'); // Find the parent div containing the input
+        if (!parent) return;
 
-        let errorSpan = formGroup.querySelector('.error-message');
+        let errorSpan = parent.querySelector('.error-message');
         if (!errorSpan) {
             errorSpan = document.createElement('span');
             errorSpan.className = 'error-message';
-            errorSpan.style.color = 'var(--secondary-color)';
+            errorSpan.style.color = 'var(--secondary-color)'; // Using a variable for consistency
             errorSpan.style.fontSize = '0.85rem';
             errorSpan.style.display = 'block';
             errorSpan.style.marginTop = '5px';
-            formGroup.appendChild(errorSpan);
+            parent.appendChild(errorSpan);
         }
         errorSpan.textContent = message;
-        inputElement.classList.add('input-error');
-        inputElement.style.borderColor = 'var(--secondary-color)';
+        inputElement.classList.add('input-error'); // Add class for styling
+        // inputElement.style.borderColor = 'var(--secondary-color)'; // Already handled by .input-error class
     }
 
     function clearFormErrors() {
         document.querySelectorAll('.error-message').forEach(span => span.remove());
         document.querySelectorAll('.input-error').forEach(input => {
             input.classList.remove('input-error');
-            input.style.borderColor = '#e0e0e0';
+            // input.style.borderColor = '#e0e0e0'; // Resetting border color is handled by removing the class
         });
     }
 });
