@@ -1,47 +1,61 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Interactive Gallery Tab Logic ---
-    const galleryTabsContainer = document.querySelector('.gallery-tabs');
-    const tabLinks = document.querySelectorAll('.tab-link');
-    const galleryGrids = document.querySelectorAll('.gallery-grid');
+    const body = document.body;
+    const loader = document.querySelector('.loader');
+    const menuButton = document.querySelector('.menu-button');
+    const navOverlay = document.querySelector('.nav-overlay');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const heroTitle = document.querySelector('.hero-title');
 
-    if (galleryTabsContainer) {
-        galleryTabsContainer.addEventListener('click', (e) => {
-            // Check if a tab button was clicked
-            if (e.target.matches('.tab-link')) {
-                const clickedTab = e.target;
-                const targetGridId = clickedTab.dataset.tab;
-                const targetGrid = document.getElementById(targetGridId);
+    // --- LOADER ---
+    window.addEventListener('load', () => {
+        loader.classList.add('loaded');
+    });
 
-                // Update active state on tab buttons
-                tabLinks.forEach(link => link.classList.remove('active'));
-                clickedTab.classList.add('active');
+    // --- CHARACTER REVEAL ANIMATION ---
+    const chars = heroTitle.querySelectorAll('.char');
+    chars.forEach((char, index) => {
+        char.style.animationDelay = `${index * 0.05 + 0.5}s`;
+    });
 
-                // Update active state on gallery grids
-                galleryGrids.forEach(grid => grid.classList.remove('active'));
-                if (targetGrid) {
-                    targetGrid.classList.add('active');
-                }
-            }
+    // --- MENU TOGGLE ---
+    menuButton.addEventListener('click', () => {
+        body.classList.toggle('nav-open');
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            body.classList.remove('nav-open');
         });
-    }
+    });
 
-    // --- Fade-in on Scroll Animation Logic ---
+    // --- MAGNETIC BUTTON ---
+    const menuBtnContainer = document.querySelector('.menu-button-container');
+    menuBtnContainer.addEventListener('mousemove', (e) => {
+        const rect = menuBtnContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        menuButton.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+    });
+
+    menuBtnContainer.addEventListener('mouseleave', () => {
+        menuButton.style.transform = 'translate(0, 0)';
+    });
+
+    // --- SCROLL REVEAL ---
     const revealElements = document.querySelectorAll('.reveal');
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Stop observing once visible
+                observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1 // Trigger when 10% of the element is in view
+        threshold: 0.1
     });
 
-    revealElements.forEach(element => {
-        revealObserver.observe(element);
+    revealElements.forEach(el => {
+        observer.observe(el);
     });
-
 });
