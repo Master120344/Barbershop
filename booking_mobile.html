@@ -4,10 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Appointment - Clean Cutz</title>
-    <link rel="stylesheet" href="booking_mobile.css"> <!-- Link to the separate CSS file -->
+    <link rel="stylesheet" href="booking_mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- FullCalendar CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet'>
+
+    <style>
+        /* Custom styles for calendar view */
+        #calendar-container {
+            margin-top: 30px;
+            background-color: var(--dark-grey);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .fc-theme-standard .fc-scrollgrid {
+            border: 1px solid #444; /* Match form group border */
+        }
+        .fc-today-button, .fc-prev-button, .fc-next-button, .fc-dayGridMonth-button, .fc-timeGridWeek-button, .fc-timeGridDay-button {
+            background-color: var(--secondary-color) !important;
+            color: #000 !important;
+            border: none !important;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease;
+        }
+        .fc-today-button:hover, .fc-prev-button:hover, .fc-next-button:hover, .fc-dayGridMonth-button:hover, .fc-timeGridWeek-button:hover, .fc-timeGridDay-button:hover {
+            background-color: #b8952a !important; /* Darker gold on hover */
+        }
+        /* Styling for different event types */
+        .fc-event.fc-event-booked { /* Booked slots */
+            background-color: var(--error-color);
+            border-color: var(--error-color);
+            color: var(--text-color);
+        }
+        .fc-event.fc-event-available { /* Available slots */
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            color: #000; /* Black text for better contrast on green */
+        }
+        /* Make calendar clickable to potentially pre-fill form */
+        .fc-daygrid-day-frame, .fc-timegrid-slot-con {
+            cursor: pointer;
+        }
+        .fc-daygrid-day-frame:hover, .fc-timegrid-slot-con:hover {
+            background-color: #383838 !important; /* Slightly lighter on hover */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -37,7 +82,6 @@
             <div id="selected-services-summary" class="form-group">
                 <label>Selected Services</label>
                 <div id="services-list-display" class="services-list-display">
-                    <!-- Selected services will be listed here by JS -->
                     <p class="no-services-message">No services selected yet. Go back to the <a href="services_mobile.html">Services page</a> to choose.</p>
                 </div>
             </div>
@@ -73,15 +117,15 @@
                     <div class="error-message" data-for="phone"></div>
                 </div>
                 
-                <!-- Hidden input for selected services to be submitted -->
-                <input type="hidden" id="selectedServicesInput" name="selectedServices" required>
+                <!-- Hidden input for selected services -->
+                <!-- FIX: Changed name to 'service' to match PHP processing -->
+                <input type="hidden" id="selectedServicesInput" name="service" required>
 
                 <!-- Date & Time -->
                 <div class="form-group-inline">
                     <div class="form-group">
                         <label for="bookingDate">Date</label>
                         <div class="input-wrapper">
-                            <!-- SVG icon for Date -->
                             <span class="input-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19,4H17V2H15V4H9V2H7V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4M19,18H7V7H19V18Z"/></svg>
                             </span>
@@ -92,7 +136,6 @@
                     <div class="form-group">
                         <label for="bookingTime">Time</label>
                         <div class="input-wrapper">
-                            <!-- SVG icon for Time -->
                             <span class="input-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,20a8,8,0,0,0,8-8V8a8,8,0,0,0-16,0v4a8,8,0,0,0,8,8Zm0-14a6,6,0,0,1,6,6H6A6,6,0,0,1,12,6Zm0,12a6,6,0,0,1-5.64-4H17.64A6,6,0,0,1,12,18Z"/></svg>
                             </span>
@@ -118,12 +161,24 @@
             
             <div id="form-response-message" class="response-message"></div>
         </section>
+
+        <!-- Calendar Section -->
+        <section id="availability-calendar-section">
+            <h2>Check Availability</h2>
+            <div id="calendar-container">
+                <div id="calendar"></div>
+            </div>
+        </section>
     </main>
 
     <footer>
         <p>© 2025 Clean Cutz. All rights reserved.</p>
     </footer>
 
-    <script src="booking_mobile.js"></script> <!-- Link to the separate JS file -->
+    <!-- jQuery (required by FullCalendar for some versions, good to have) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.js'></script>
+    <script src="booking_mobile.js"></script>
 </body>
 </html>
