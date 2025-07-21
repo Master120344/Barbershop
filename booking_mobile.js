@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // --- Hamburger Menu Logic ---
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    // --- Form Logic ---
     const form = document.getElementById('appointment-form');
     const submitButton = form.querySelector('.cta-button');
     const buttonText = submitButton.querySelector('.button-text');
@@ -7,10 +16,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
-        if (!validateForm()) return;
+        if (!validateForm()) {
+            // Shake the button slightly if validation fails
+            submitButton.style.animation = 'shake 0.5s';
+            setTimeout(() => { submitButton.style.animation = '' }, 500);
+            return;
+        }
 
         setLoading(true);
-
         const formData = new FormData(form);
 
         fetch('process_booking.php', {
@@ -34,14 +47,17 @@ document.addEventListener('DOMContentLoaded', function () {
         let isValid = true;
         form.querySelectorAll('[required]').forEach(input => {
             const errorContainer = input.closest('.form-group, .form-group-inline .form-group').querySelector('.error-message');
+            clearError(input, errorContainer); // Clear previous errors first
+
             if (input.value.trim() === '') {
                 isValid = false;
                 showError(input, errorContainer, 'This field is required.');
             } else if (input.type === 'email' && !/\S+@\S+\.\S+/.test(input.value)) {
                 isValid = false;
                 showError(input, errorContainer, 'Please enter a valid email address.');
-            } else {
-                clearError(input, errorContainer);
+            } else if (input.type === 'tel' && !/^[0-9\s-()+.]{10,}$/.test(input.value)) { // More flexible phone validation
+                isValid = false;
+                showError(input, errorContainer, 'Please enter a valid phone number.');
             }
         });
         return isValid;
@@ -49,24 +65,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function showError(input, container, message) {
         container.textContent = message;
-        input.style.borderColor = 'var(--error-color)';
+        input.classList.add('invalid');
     }
 
     function clearError(input, container) {
         container.textContent = '';
-        input.style.borderColor = '';
+        input.classList.remove('invalid');
     }
 
     function setLoading(isLoading) {
-        if (isLoading) {
-            submitButton.disabled = true;
-            buttonText.style.display = 'none';
-            buttonLoader.style.display = 'block';
-        } else {
-            submitButton.disabled = false;
-            buttonText.style.display = 'block';
-            buttonLoader.style.display = 'none';
-        }
+        submitButton.disabled = isLoading;
+        buttonText.style.display = isLoading ? 'none' : 'block';
+        buttonLoader.style.display = isLoading ? 'block' : 'none';
     }
 
     function handleResponse(data) {
@@ -77,17 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (data.success) {
             responseMessageContainer.classList.add('success');
             form.reset();
-            form.style.display = 'none'; // Hide form on success
-            document.querySelector('.form-intro').style.display = 'none'; // Hide intro text
+            form.style.display = 'none';
+            document.querySelector('.form-intro').textContent = "We've received your request!";
         } else {
             responseMessageContainer.classList.add('error');
         }
-    }
-    
-    // --- Hamburger Menu Logic (from index_mobile.js) ---
-    const hamburger = document.querySelector('.hamburger');
-    const navUl = document.querySelector('nav ul');
-    if(hamburger) {
-        hamburger.addEventListener('click', () => navUl.classList.toggle('active'));
     }
 });
