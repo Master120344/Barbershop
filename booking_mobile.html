@@ -14,9 +14,13 @@
 
     <style>
         /* Custom styles for calendar view */
-        #availability-calendar-section { /* Added section for better layout */
+        #availability-calendar-section {
             margin-top: 40px; /* Space above calendar section */
             padding: 15px; /* Add some padding */
+            /* display: none;  We'll control visibility via JS class */
+        }
+        #availability-calendar-section.visible {
+            display: block; /* Shown when services are selected */
         }
         #calendar-container {
             background-color: var(--dark-grey);
@@ -27,41 +31,35 @@
         .fc-theme-standard .fc-scrollgrid {
             border: 1px solid #444; /* Match form group border */
         }
-        .fc-today-button, .fc-prev-button, .fc-next-button, .fc-dayGridMonth-button, .fc-timeGridWeek-button, .fc-timeGridDay-button {
+        .fc-toolbar-chunk button { /* Styles for toolbar buttons */
             background-color: var(--secondary-color) !important;
             color: #000 !important;
             border: none !important;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: background-color 0.3s ease;
+            padding: 5px 10px; /* Smaller padding for buttons */
+            border-radius: 4px;
         }
-        .fc-today-button:hover, .fc-prev-button:hover, .fc-next-button:hover, .fc-dayGridMonth-button:hover, .fc-timeGridWeek-button:hover, .fc-timeGridDay-button:hover {
+        .fc-toolbar-chunk button:hover {
             background-color: #b8952a !important; /* Darker gold on hover */
         }
-        /* Styling for different event types */
+        .fc-event {
+            border: none !important;
+        }
         .fc-event.fc-event-booked { /* Booked slots */
-            background-color: var(--error-color);
-            border-color: var(--error-color);
-            color: var(--text-color);
+            background-color: var(--error-color) !important;
+            border-color: var(--error-color) !important;
         }
         .fc-event.fc-event-available { /* Available slots */
-            background-color: var(--success-color);
-            border-color: var(--success-color);
-            color: #000; /* Black text for better contrast on green */
+            background-color: var(--success-color) !important;
+            border-color: var(--success-color) !important;
+            color: #000 !important; /* Black text for better contrast on green */
         }
-        /* Make calendar clickable to pre-fill form */
         .fc-daygrid-day-frame, .fc-timegrid-slot-con {
             cursor: pointer;
         }
         .fc-daygrid-day-frame:hover, .fc-timegrid-slot-con:hover {
             background-color: #383838 !important; /* Slightly lighter on hover */
-        }
-        /* Hide calendar section by default if no services are selected */
-        #availability-calendar-section {
-            display: none; 
-        }
-        /* Show calendar section if services are selected */
-        #availability-calendar-section.visible {
-            display: block;
         }
     </style>
 </head>
@@ -93,7 +91,6 @@
             <div id="selected-services-summary" class="form-group">
                 <label>Selected Services</label>
                 <div id="services-list-display" class="services-list-display">
-                    <!-- JS will populate this or show a message -->
                     <p class="no-services-message">No services selected yet. Go back to the <a href="services_mobile.html">Services page</a> to choose.</p>
                 </div>
             </div>
@@ -175,7 +172,7 @@
 
         <!-- Calendar Section -->
         <section id="availability-calendar-section">
-            <h2>Check Availability</h2>
+            <!-- Removed the H2 title here to avoid redundancy -->
             <div id="calendar-container">
                 <div id="calendar"></div>
             </div>
