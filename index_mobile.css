@@ -1,4 +1,3 @@
-
 /* --- General Styles --- */
 :root {
     --primary-color: #1a1a1a; /* Dark background */
@@ -116,7 +115,7 @@ nav ul {
     position: absolute;
     top: 60px;
     right: 20px;
-    background-color: var(--primary-color);
+    background-color: rgba(26, 26, 26, 0.95); /* Semi-transparent background */
     border: 1px solid var(--secondary-color);
     width: 200px;
     z-index: 1001;
@@ -165,9 +164,9 @@ nav ul li a:hover {
 
 /* --- Hero Section --- */
 .hero-section {
-    height: 50vh; /* You can adjust this height */
-    padding: 0; /* Remove padding to allow the image to fill edge-to-edge */
-    background-color: var(--primary-color); /* Fallback background color */
+    height: 50vh;
+    padding: 0;
+    background-color: var(--primary-color);
 }
 
 .hero-content {
@@ -178,13 +177,13 @@ nav ul li a:hover {
 .hero-logo {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This is the key property to fill the box */
+    object-fit: cover;
 }
 
 
 /* --- Services Section --- */
 .services-section {
-    background-color: var(--dark-grey);
+    background-color: var(--primary-color); /* Updated background */
     padding-bottom: 80px;
 }
 
@@ -233,7 +232,7 @@ nav ul li a:hover {
 
 /* --- About Section --- */
 .about-section {
-    background-color: var(--primary-color);
+    background-color: var(--dark-grey); /* Changed for visual separation */
     padding-top: 60px;
     padding-bottom: 60px;
 }
@@ -284,21 +283,9 @@ nav ul li a:hover {
     line-height: 1.7;
 }
 
-.shirt-design-preview {
-    margin-top: 2em;
-    padding: 15px;
-    border: 2px dashed var(--secondary-color);
-    width: 80%;
-    max-width: 300px;
-    text-align: center;
-    font-family: var(--font-oswald);
-    font-weight: 700;
-    color: var(--secondary-color);
-}
-
 /* --- Book Section --- */
 .book-section {
-    background-color: var(--dark-grey);
+    background-color: var(--primary-color);
 }
 
 .book-section h2 {
@@ -340,7 +327,7 @@ nav ul li a:hover {
 
 /* --- Contact Section --- */
 .contact-section {
-    background-color: var(--primary-color);
+    background-color: var(--dark-grey); /* Changed for visual separation */
 }
 
 .contact-section h2 {
@@ -385,7 +372,7 @@ nav ul li a:hover {
 
 /* --- Footer Styles --- */
 footer {
-    background-color: var(--dark-grey);
+    background-color: var(--primary-color);
     color: var(--light-grey);
     text-align: center;
     padding: 20px 10px;
