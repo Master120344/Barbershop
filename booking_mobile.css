@@ -152,7 +152,7 @@ main {
 #availability-calendar-section {
     margin-top: 40px; /* Space above calendar section */
     padding: 15px; /* Add some padding */
-    display: none; /* Hidden by default */
+    /* display: none;  We'll control visibility via JS class */
 }
 
 #availability-calendar-section.visible {
