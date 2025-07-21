@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Smooth scrolling for navigation links to sections
+    // This part remains the same as it's for internal page scrolling using anchors.
+    // Links to other HTML files are handled directly by their href attributes.
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
