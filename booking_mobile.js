@@ -114,48 +114,45 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('blur', () => validateInput(input));
     });
 
-    // --- Load Selected Services (FIXED) ---
-    let selectedServices = []; // Initialize here for calendar logic
+    // --- Load Selected Services ---
+    let selectedServices = []; // Initialize here
 
     const loadSelectedServices = () => {
         const storedServices = localStorage.getItem(localStorageKey);
         if (storedServices) {
-            selectedServices = JSON.parse(storedServices); // Use the global 'selectedServices' array
+            selectedServices = JSON.parse(storedServices);
         } else {
-            selectedServices = []; // Ensure it's empty if nothing is stored
+            selectedServices = [];
         }
 
-        // Update the hidden input for form submission
         if (selectedServicesInput) {
             selectedServicesInput.value = selectedServices.join(', ');
         }
 
-        // Display the selected services in the summary area
         if (servicesListDisplay) {
             if (selectedServices.length > 0) {
                 servicesListDisplay.innerHTML = '<ul>' +
                     selectedServices.map(service => `<li>${service}</li>`).join('') +
                     '</ul>';
                 
-                // Pre-fill comments if they are empty
                 if (!commentsTextarea.value.trim()) {
                     commentsTextarea.value = `Services requested: ${selectedServices.join(', ')}.`;
                     updateCharCounter();
                 }
-                // Show the calendar section if services are selected
+                // Show the calendar section ONLY if services are selected
                 if (calendarSection) {
                     calendarSection.classList.add('visible');
                 }
             } else {
-                servicesListDisplay.innerHTML = '<p class="no-services-message">No services selected. Please return to the <a href="services_mobile.html">Services page</a> to make your selection.</p>';
+                servicesListDisplay.innerHTML = '<p class="no-services-message">No services selected. Please return to the <a href="services_mobile.html">Services page</a> to choose.</p>';
                 if (submitButton) submitButton.disabled = true;
-                // Hide the calendar section if no services are selected
+                // Hide calendar section if no services selected
                 if (calendarSection) {
                     calendarSection.classList.remove('visible');
                 }
             }
         }
-        // Re-validate the selectedServicesInput (which should now have a value if services are selected)
+        // Re-validate the hidden input if services are selected
         validateInput(selectedServicesInput);
     };
 
@@ -170,14 +167,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Also ensure services are selected (hidden input needs to be valid too)
-        if (!selectedServicesInput.value) {
+        if (!selectedServicesInput.value) { // Check if services are actually selected and passed
             showError(selectedServicesInput, 'Please select at least one service.');
             isFormValid = false;
         } else {
             removeError(selectedServicesInput);
         }
-
 
         if (isFormValid) {
             submitButton.querySelector('.button-text').style.display = 'none';
@@ -203,18 +198,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (selectedServicesInput) selectedServicesInput.value = '';
                     if (servicesListDisplay) servicesListDisplay.innerHTML = '';
                     updateCharCounter();
-                    // Hide calendar and reset button state
-                    if (calendarSection) calendarSection.classList.remove('visible');
+                    if (calendarSection) calendarSection.classList.remove('visible'); // Hide calendar again
 
                     submitButton.querySelector('.button-text').style.display = 'inline-block';
                     submitButton.querySelector('.button-loader').style.display = 'none';
                     submitButton.disabled = false; 
                     
-                    // Clear and re-render calendar to show newly available slots might be complex here if it's dynamic
-                    // For simplicity, we'll just reset the form and message.
-
                 } else {
-                    // Display specific validation errors if available
                     if (data.errors) {
                         Object.keys(data.errors).forEach(field => {
                             const inputElement = document.getElementById(field);
@@ -261,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         editable: false,
         selectable: true, 
         dayMaxEvents: true, 
-        slotDuration: '00:15:00', // 15 minute slots
+        slotDuration: '00:15:00',
         slotLabelFormat: {
             hour: 'numeric',
             minute: '2-minute',
@@ -270,7 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         events: 'get_availability.php',
 
-        // Custom rendering for events to show text and colors clearly
         eventContent: function(arg) {
             let innerHtml = '';
             if (arg.event.classNames.includes('fc-event-booked')) {
@@ -280,35 +269,19 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 innerHtml = '<div class="fc-event-text">' + (arg.event.title || 'Event') + '</div>';
             }
-            return { html: innerHtml }; // Return HTML string for custom content
+            return { html: innerHtml };
         },
 
-        // Handle clicking on an available slot to pre-fill booking form
         slotClick: function(info) {
-            // Check if the clicked slot is available (has 'fc-event-available' class)
-            // The slot element might be a div, timegrid-slot, etc.
-            // A more robust check is to see if it's NOT booked.
-            // We can check if the slot's background is NOT the booked color.
-            // Or if it doesn't contain a 'booked' element.
-            
-            // Check if the slot itself is considered available by not having a booked event within it.
-            // This requires checking the DOM element or the event data.
-            // For simplicity, let's rely on the JS logic that determines if an event *should* be rendered as available.
-            // The most reliable way is to check if the event is NOT booked based on its class or color.
-            // FullCalendar's `slotClick` might pass the `dayEl` and we can check its classes,
-            // but the event structure itself is better. Let's assume if it's not booked, it's available.
-            
-            const clickedDateStr = info.dateStr; // This is in YYYY-MM-DDTHH:MM:SS format
+            const clickedDateStr = info.dateStr; 
             const clickedDate = new Date(clickedDateStr);
             
-            // Check if this specific slot is currently marked as booked by querying the calendar's events
-            const eventsInRange = calendar.getEvents();
             let isSlotBooked = false;
+            const eventsInRange = calendar.getEvents();
             for (const event of eventsInRange) {
                 const eventStart = new Date(event.start);
                 const eventEnd = new Date(event.end);
 
-                // Check if the clicked slot's start time falls within any booked event's range
                 if (clickedDate >= eventStart && clickedDate < eventEnd && event.classNames.includes('fc-event-booked')) {
                     isSlotBooked = true;
                     break;
@@ -316,14 +289,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (!isSlotBooked) {
-                bookingDateInput.value = clickedDateStr.split('T')[0]; // YYYY-MM-DD
-                bookingTimeInput.value = clickedDateStr.split('T')[1].slice(0, 5); // HH:MM
+                bookingDateInput.value = clickedDateStr.split('T')[0];
+                bookingTimeInput.value = clickedDateStr.split('T')[1].slice(0, 5);
                 
-                // Trigger validation for date/time if they were already filled
                 validateInput(bookingDateInput);
                 validateInput(bookingTimeInput);
 
-                // Scroll to the form
                 document.getElementById('appointment-form').scrollIntoView({ behavior: 'smooth' });
             } else {
                 alert('This slot is already booked.');
@@ -331,39 +302,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         dateClick: function(info) {
-            // If a user clicks a day, set the date and clear the time
             const clickedDateStr = info.dateStr;
             const clickedDate = new Date(clickedDateStr);
 
-            // Check if the *entire day* is booked (e.g., no available slots on that day)
-            // This is a simpler check: see if any event *starts* on that day and is red.
-            // A more accurate check would involve iterating through all slots.
-            
-            let dayIsFullyBooked = false;
-            const eventsForDay = calendar.getEvents();
-            for (const event of eventsForDay) {
-                 if (event.classNames.includes('fc-event-booked')) {
-                    const eventStart = new Date(event.start);
-                    const eventEnd = new Date(event.end);
-                    // Check if any booked event falls on this date
-                    if (clickedDate >= eventStart && clickedDate < eventEnd) {
-                         // For simplicity, if any booked event exists, let's not make the day fully clickable for the form
-                         // A better approach would be to check if ALL slots for that day are booked.
-                         // For now, if it's booked at all, we might warn.
-                         // But we still want to allow setting the date.
-                         // Let's refine: If ANY slot is available, allow setting the date.
-                         // A true "fully booked" check is complex. We'll assume if some slots are available, the day is usable.
-                         
-                         // The issue here is the "Check Availability" text. The calendar itself IS the availability display.
-                         // The calendar should just be visible if services are selected.
-                    }
-                 }
-            }
-
-            // If services are selected and the calendar is visible, allow date selection.
             if (calendarSection && calendarSection.classList.contains('visible')) {
                 bookingDateInput.value = clickedDateStr;
-                // Optionally clear time, or leave it as is if user needs to pick it from the calendar
                 bookingTimeInput.value = ''; // Clear time when date changes
                 validateInput(bookingDateInput);
                 document.getElementById('appointment-form').scrollIntoView({ behavior: 'smooth' });
@@ -376,7 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadSelectedServices(); // Load services first to determine calendar visibility
     updateCharCounter(); 
 
-    // Initial formatting on phone input blur
     if (phoneInput) {
         phoneInput.addEventListener('blur', () => {
             if (phoneInput.value) {
