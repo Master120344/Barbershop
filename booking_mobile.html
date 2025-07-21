@@ -17,7 +17,7 @@
                 <li><a href="index_mobile.html">Home</a></li>
                 <li><a href="services_mobile.html">Services</a></li>
                 <li><a href="index_mobile.html#about">About</a></li>
-                <li><a href="booking_mobile.html">Book Appointment</a></li>
+                <li><a href="booking_mobile.html">Book</a></li>
                 <li><a href="index_mobile.html#contact">Contact</a></li>
             </ul>
         </nav>
@@ -31,62 +31,78 @@
     <main>
         <section id="booking-form-section">
             <h2>Book Your Appointment</h2>
-            <p class="form-intro">Fill out the form below to schedule your visit.</p>
+            <p class="form-intro">Select your service and preferred time. We'll confirm your booking via email.</p>
             
-            <form id="appointment-form" action="process_booking.php" method="POST" novalidate>
+            <form id="appointment-form" novalidate>
+                <!-- Full Name -->
                 <div class="form-group">
                     <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    <div class="input-wrapper">
+                        <span class="input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></span>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    </div>
                     <div class="error-message"></div>
                 </div>
 
+                <!-- Email Address -->
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <div class="input-wrapper">
+                         <span class="input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></span>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
                     <div class="error-message"></div>
                 </div>
 
+                <!-- Phone Number -->
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="e.g., 123-456-7890" required>
+                    <div class="input-wrapper">
+                        <span class="input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.02.74-.25 1.02l-2.2 2.2z"/></svg></span>
+                        <input type="tel" id="phone" name="phone" placeholder="e.g., 123-456-7890" required>
+                    </div>
                     <div class="error-message"></div>
                 </div>
                 
+                <!-- Service Selection -->
                 <div class="form-group">
                     <label for="service">Choose a Service</label>
-                    <select id="service" name="service" required>
-                        <option value="" disabled selected>Select a service...</option>
-                        <option value="mens-haircut">Haircut (Men)</option>
-                        <option value="womens-haircut">Haircut (Women)</option>
-                        <option value="kids-haircut">Haircut (Kids)</option>
-                        <option value="shave-beard">Shave & Beard Grooming</option>
-                        <option value="styling-color">Hair Styling & Color</option>
-                    </select>
+                    <div class="input-wrapper">
+                        <span class="input-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-1V2h-2v3h-4V2H8v3H7c-1.1 0-2 .9-2 2v4H3.5c-.83 0-1.5.67-1.5 1.5S2.67 14 3.5 14H5v4c0 1.1.9 2 2 2h1v3h2v-3h4v3h2v-3h1c1.1 0 2-.9 2-2v-4h1.5c.83 0 1.5-.67 1.5-1.5S21.33 11 20.5 11zM17 18H7V7h10v11z"/><path d="M9 15h6v-2H9v2zm0-4h6V9H9v2z"/></svg></span>
+                        <select id="service" name="service" required>
+                            <option value="" disabled selected>Select a service...</option>
+                            <option value="Haircut (Men)">Haircut (Men)</option>
+                            <option value="Haircut (Women)">Haircut (Women)</option>
+                            <option value="Haircut (Kids)">Haircut (Kids)</option>
+                            <option value="Shave & Beard Grooming">Shave & Beard Grooming</option>
+                            <option value="Hair Styling & Color">Hair Styling & Color</option>
+                        </select>
+                    </div>
                     <div class="error-message"></div>
                 </div>
 
+                <!-- Date & Time -->
                 <div class="form-group-inline">
                     <div class="form-group">
-                        <label for="bookingDate">Preferred Date</label>
+                        <label for="bookingDate">Date</label>
                         <input type="date" id="bookingDate" name="bookingDate" required>
                         <div class="error-message"></div>
                     </div>
-
                     <div class="form-group">
-                        <label for="bookingTime">Preferred Time</label>
-                        <input type="time" id="bookingTime" name="bookingTime" required>
+                        <label for="bookingTime">Time</label>
+                        <input type="time" id="bookingTime" name="bookingTime" required min="09:00" max="18:00">
                         <div class="error-message"></div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="notes">Additional Notes (optional)</label>
-                    <textarea id="notes" name="notes" placeholder="Any special requests?"></textarea>
-                </div>
-
-                <button type="submit" class="cta-button">Book Now</button>
+                <!-- Submit Button -->
+                <button type="submit" class="cta-button">
+                    <span class="button-text">Request Booking</span>
+                    <span class="button-loader"></span>
+                </button>
             </form>
-            <div id="form-success-message" class="success-message"></div>
+            
+            <div id="form-response-message"></div>
         </section>
     </main>
 
