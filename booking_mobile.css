@@ -128,7 +128,7 @@ main {
 #booking-form-section {
     max-width: 550px;
     margin: 20px auto;
-    background-color: var(--dark-grey); /* Using dark-grey from variables */
+    background-color: var(--dark-grey);
     padding: 25px 30px;
     border-radius: 8px;
     border: 1px solid #333;
@@ -152,7 +152,7 @@ main {
 }
 
 .form-group-inline .form-group {
-    flex: 1; /* Each inline group takes equal space */
+    flex: 1;
 }
 
 label {
@@ -180,12 +180,11 @@ label {
     width: 20px;
     height: 20px;
     transition: opacity 0.3s ease;
-    display: flex; /* For centering content */
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Specific styling for date/time icons */
 input[type="date"] + .input-icon,
 input[type="time"] + .input-icon {
     color: var(--secondary-color);
@@ -194,56 +193,53 @@ input[type="time"] + .input-icon {
 
 input, select, textarea {
     width: 100%;
-    padding: 15px 15px 15px 50px; /* Adjusted padding to accommodate icon */
+    padding: 15px 15px 15px 50px;
     background-color: var(--dark-grey);
     border: 1px solid #444;
     border-radius: 5px;
     color: var(--text-color);
     font-family: var(--font-roboto);
     font-size: 1rem;
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    box-sizing: border-box;
     transition: all 0.3s ease;
 }
 
-/* Specific padding for date/time to align better with icon */
 input[type="date"],
 input[type="time"] {
-    padding-left: 50px; /* Keep consistent padding */
-    cursor: text; /* Cursor for text inputs */
+    padding-left: 50px;
+    cursor: text;
 }
 
 textarea {
-    padding: 15px; /* Standard padding for textarea */
+    padding: 15px;
     min-height: 120px;
     resize: vertical;
 }
 
 .input-wrapper:focus-within .input-icon {
-    opacity: 1; /* Icon becomes fully opaque on focus */
+    opacity: 1;
 }
 
-/* Focus state: subtle gold border */
 input:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    border-color: var(--secondary-color); /* Gold border on focus */
-    background-color: #282828; /* Slightly lighter dark grey on focus */
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); /* Gold glow */
+    border-color: var(--secondary-color);
+    background-color: #282828;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
 }
 
-/* Invalid state: red border */
 input.invalid,
 select.invalid,
 textarea.invalid {
-    border-color: var(--error-color); /* Red border for errors */
-    box-shadow: 0 0 8px rgba(255, 107, 107, 0.5); /* Red glow */
+    border-color: var(--error-color);
+    box-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
 }
 
 select {
-    appearance: none; /* Remove default dropdown arrow */
+    appearance: none;
     cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* Custom dropdown arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 15px top 50%;
     background-size: 18px;
@@ -286,7 +282,7 @@ select {
 }
 
 .cta-button:disabled {
-    background: #555; /* Darker grey when disabled */
+    background: #555;
     color: var(--light-grey);
     cursor: not-allowed;
     transform: none;
@@ -299,7 +295,7 @@ select {
     border: 3px solid rgba(0,0,0,0.2);
     border-top-color: #000;
     border-radius: 50%;
-    display: none; /* Hidden by default */
+    display: none;
     animation: spin 1s linear infinite;
 }
 
@@ -310,18 +306,17 @@ select {
 .error-message {
     color: var(--error-color);
     font-size: 0.9rem;
-    height: 1.2em; /* Ensure it takes up space even when empty */
+    height: 1.2em;
     margin-top: 8px;
     font-weight: 500;
 }
 
-/* Style for the display of selected services */
 .services-list-display {
     background-color: var(--dark-grey);
     border: 1px solid #444;
     border-radius: 5px;
     padding: 15px;
-    min-height: 60px; /* Minimum height */
+    min-height: 60px;
     font-size: 0.95rem;
     color: var(--light-grey);
     line-height: 1.7;
@@ -358,7 +353,7 @@ select {
     margin-top: 20px;
     border-radius: 5px;
     text-align: center;
-    display: none; /* Hidden by default */
+    display: none;
     font-size: 1.1rem;
     border: 1px solid;
 }
@@ -386,7 +381,7 @@ select {
     }
 
     .hamburger {
-        display: none; /* Hide hamburger on larger screens */
+        display: none;
     }
 
     .nav-menu {
@@ -417,11 +412,11 @@ select {
     .nav-menu ul li a:hover {
         background-color: var(--secondary-color);
         color: #000;
-        padding-left: 15px; /* Reset padding-left from mobile */
+        padding-left: 15px;
     }
     
     #booking-form-section {
-        padding: 35px 40px; /* More padding on larger screens */
+        padding: 35px 40px;
     }
 
     .form-intro {
@@ -429,7 +424,7 @@ select {
     }
 
     .form-group-inline {
-        flex-wrap: nowrap; /* Ensure inline groups stay in one row */
+        flex-wrap: nowrap;
     }
     
     .cta-button {
