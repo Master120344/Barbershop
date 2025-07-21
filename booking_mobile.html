@@ -59,7 +59,7 @@
                     <label for="phone">Phone Number</label>
                     <div class="input-wrapper">
                         <span class="input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.02.74-.25 1.02l-2.2 2.2z"/></svg></span>
-                        <input type="tel" id="phone" name="phone" placeholder="e.g., 123-456-7890" required>
+                        <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required maxlength="12">
                     </div>
                     <div class="error-message"></div>
                 </div>
@@ -68,7 +68,7 @@
                 <div class="form-group">
                     <label for="service">Choose a Service</label>
                     <div class="input-wrapper">
-                        <span class="input-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor"><path d="M7.03 13.92C7.03 13.92 7.03 13.92 7.03 13.92 6.75 14.21 6.75 14.68 7.03 14.97 7.17 15.11 7.36 15.18 7.54 15.18S7.92 15.11 8.06 14.97L10.5 12.53 12.94 14.97C13.08 15.11 13.27 15.18 13.46 15.18S13.83 15.11 13.97 14.97C14.25 14.68 14.25 14.21 13.97 13.92L11.53 11.49 13.97 9.06C14.25 8.77 14.25 8.3 13.97 8.01 13.68 7.73 13.21 7.73 12.92 8.01L10.5 10.44 8.06 8.01C7.78 7.73 7.3 7.73 7.02 8.01 6.74 8.3 6.74 8.77 7.02 9.06L9.46 11.49 7.03 13.92ZM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12S7.58 4 12 4s8 3.58 8 8S16.42 20 12 20Z"></path></svg></span>
+                        <span class="input-icon"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor"><path d="M18.14,9.66l-2.47-2.47C15.54,7.06,15.29,7,15.03,7s-0.51,0.06-0.71,0.25l-2.66,2.66l-4.24-4.24C7,5.29,6.54,5.03,6,5.03 S5,5.29,4.59,5.71L2.12,8.18c-0.83,0.83-0.83,2.17,0,3l2.47,2.47c0.13,0.13,0.3,0.22,0.47,0.25c-0.1,0.26-0.12,0.53-0.06,0.8l0.66,3.19 c0.11,0.53,0.56,0.91,1.1,0.91c0.03,0,0.05,0,0.08,0c0.55-0.08,0.97-0.5,1.06-1.05l0.66-3.19c0.06-0.27,0.04-0.54-0.06-0.8 c0.18-0.03,0.34-0.12,0.47-0.25l2.47,2.47c0.83,0.83,2.17,0.83,3,0l2.47-2.47c0.83-0.83,0.83-2.17,0-3L18.14,9.66z M10,12.5 c-0.83,0-1.5-0.67-1.5-1.5s0.67-1.5,1.5-1.5s1.5,0.67,1.5,1.5S10.83,12.5,10,12.5z"/></svg></span>
                         <select id="service" name="service" required>
                             <option value="" disabled selected>Select a service...</option>
                             <option value="Haircut (Men)">Haircut (Men)</option>
@@ -93,6 +93,13 @@
                         <input type="time" id="bookingTime" name="bookingTime" required min="09:00" max="18:00">
                         <div class="error-message"></div>
                     </div>
+                </div>
+
+                <!-- Additional Notes -->
+                <div class="form-group">
+                    <label for="comments">Additional Notes (optional)</label>
+                    <textarea id="comments" name="comments" placeholder="Any special requests or details?" maxlength="1000"></textarea>
+                    <div class="char-counter">0 / 1000</div>
                 </div>
 
                 <!-- Submit Button -->
