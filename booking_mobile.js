@@ -1,85 +1,93 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // --- Hamburger Menu Logic ---
-    const hamburger = document.querySelector('.hamburger');
-    const navUl = document.querySelector('nav ul');
-
-    hamburger.addEventListener('click', function () {
-        navUl.classList.toggle('active');
-    });
-    
-    document.addEventListener('click', function (event) {
-        if (!navUl.contains(event.target) && !hamburger.contains(event.target)) {
-            navUl.classList.remove('active');
-        }
-    });
-
-    // --- Form Validation Logic ---
     const form = document.getElementById('appointment-form');
-    const successMessage = document.getElementById('form-success-message');
+    const submitButton = form.querySelector('.cta-button');
+    const buttonText = submitButton.querySelector('.button-text');
+    const buttonLoader = submitButton.querySelector('.button-loader');
+    const responseMessageContainer = document.getElementById('form-response-message');
 
     form.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent default submission
-        
-        let isValid = validateForm();
+        e.preventDefault();
+        if (!validateForm()) return;
 
-        if (isValid) {
-            // This is where you would typically send data to a server (e.g., using fetch)
-            // For now, we'll just simulate a successful submission.
-            
-            form.style.display = 'none'; // Hide the form
-            successMessage.textContent = 'Thank you! Your appointment request has been sent. We will contact you shortly to confirm.';
-            successMessage.style.display = 'block'; // Show success message
-            window.scrollTo(0, 0); // Scroll to the top
-        }
+        setLoading(true);
+
+        const formData = new FormData(form);
+
+        fetch('process_booking.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            handleResponse(data);
+        })
+        .catch(error => {
+            handleResponse({ success: false, message: 'A network error occurred. Please try again.' });
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            setLoading(false);
+        });
     });
 
     function validateForm() {
         let isValid = true;
-        const inputs = form.querySelectorAll('input[required], select[required]');
-
-        inputs.forEach(input => {
-            const errorContainer = input.parentElement.querySelector('.error-message');
-            
+        form.querySelectorAll('[required]').forEach(input => {
+            const errorContainer = input.closest('.form-group, .form-group-inline .form-group').querySelector('.error-message');
             if (input.value.trim() === '') {
                 isValid = false;
-                input.classList.add('invalid');
-                errorContainer.textContent = 'This field is required.';
-            } else if (input.type === 'email' && !isValidEmail(input.value)) {
+                showError(input, errorContainer, 'This field is required.');
+            } else if (input.type === 'email' && !/\S+@\S+\.\S+/.test(input.value)) {
                 isValid = false;
-                input.classList.add('invalid');
-                errorContainer.textContent = 'Please enter a valid email address.';
-            } else if (input.type === 'tel' && !isValidPhone(input.value)) {
-                isValid = false;
-                input.classList.add('invalid');
-                errorContainer.textContent = 'Please enter a valid phone number.';
-            } else if (input.type === 'date' && isDateInPast(input.value)) {
-                isValid = false;
-                input.classList.add('invalid');
-                errorContainer.textContent = 'Please select a future date.';
+                showError(input, errorContainer, 'Please enter a valid email address.');
             } else {
-                input.classList.remove('invalid');
-                errorContainer.textContent = '';
+                clearError(input, errorContainer);
             }
         });
-
         return isValid;
     }
 
-    function isValidEmail(email) {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
+    function showError(input, container, message) {
+        container.textContent = message;
+        input.style.borderColor = 'var(--error-color)';
     }
 
-    function isValidPhone(phone) {
-        // Simple regex for common phone formats
-        const re = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
-        return re.test(phone);
+    function clearError(input, container) {
+        container.textContent = '';
+        input.style.borderColor = '';
+    }
+
+    function setLoading(isLoading) {
+        if (isLoading) {
+            submitButton.disabled = true;
+            buttonText.style.display = 'none';
+            buttonLoader.style.display = 'block';
+        } else {
+            submitButton.disabled = false;
+            buttonText.style.display = 'block';
+            buttonLoader.style.display = 'none';
+        }
+    }
+
+    function handleResponse(data) {
+        responseMessageContainer.className = 'response-message'; // Reset classes
+        responseMessageContainer.style.display = 'block';
+        responseMessageContainer.textContent = data.message;
+
+        if (data.success) {
+            responseMessageContainer.classList.add('success');
+            form.reset();
+            form.style.display = 'none'; // Hide form on success
+            document.querySelector('.form-intro').style.display = 'none'; // Hide intro text
+        } else {
+            responseMessageContainer.classList.add('error');
+        }
     }
     
-    function isDateInPast(dateString) {
-        const selectedDate = new Date(dateString + 'T00:00:00'); // Use local timezone
-        const today = new Date();
-        today.setHours(0, 0, 0, 0); // Set today's time to midnight
-        return selectedDate < today;
+    // --- Hamburger Menu Logic (from index_mobile.js) ---
+    const hamburger = document.querySelector('.hamburger');
+    const navUl = document.querySelector('nav ul');
+    if(hamburger) {
+        hamburger.addEventListener('click', () => navUl.classList.toggle('active'));
     }
 });
