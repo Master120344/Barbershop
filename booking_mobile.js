@@ -1,163 +1,226 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // --- Hamburger Menu Logic ---
+document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
+    const appointmentForm = document.getElementById('appointment-form');
+    const servicesListDisplay = document.getElementById('services-list-display');
+    const selectedServicesInput = document.getElementById('selectedServicesInput');
+    const commentsTextarea = document.getElementById('comments');
+    const charCounter = document.querySelector('.char-counter');
+    const submitButton = document.getElementById('submit-booking-button');
+    const responseMessageDiv = document.getElementById('form-response-message');
 
-    hamburger.addEventListener('click', (event) => {
-        event.stopPropagation(); // Prevent click from bubbling up to document
-        navMenu.classList.toggle('active');
-    });
+    const localStorageKey = 'cleanCutzSelectedServices';
 
-    // Close menu if clicking outside of it
-    document.addEventListener('click', (event) => {
-        if (navMenu.classList.contains('active') && !navMenu.contains(event.target)) {
-            navMenu.classList.remove('active');
-        }
-    });
-
-    // --- Form Logic ---
-    const form = document.getElementById('appointment-form');
-    if (form) {
-        const phoneInput = document.getElementById('phone');
-        const commentsInput = document.getElementById('comments');
-        const charCounter = document.querySelector('.char-counter');
-        const submitButton = form.querySelector('.cta-button');
-        const buttonText = submitButton.querySelector('.button-text');
-        const buttonLoader = submitButton.querySelector('.button-loader');
-        const responseMessageContainer = document.getElementById('form-response-message');
-
-        // Phone number auto-formatting with dashes
-        phoneInput.addEventListener('input', (e) => {
-            let input = e.target.value.replace(/\D/g, ''); // Remove all non-digits
-            // Limit to 10 digits for formatting
-            if (input.length > 10) {
-                input = input.substring(0, 10);
-            }
-
-            let formattedInput = '';
-            if (input.length > 6) {
-                formattedInput = `${input.substring(0, 3)}-${input.substring(3, 6)}-${input.substring(6, 10)}`;
-            } else if (input.length > 3) {
-                formattedInput = `${input.substring(0, 3)}-${input.substring(3, 6)}`;
-            } else {
-                formattedInput = input;
-            }
-            e.target.value = formattedInput;
+    // --- Hamburger Menu Functionality ---
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
 
-        // Character counter for comments
-        commentsInput.addEventListener('input', () => {
-            const count = commentsInput.value.length;
-            charCounter.textContent = `${count} / 1000`;
-        });
-
-        // Form submission
-        form.addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent default submission
-
-            // Before submitting, validate all fields
-            if (!validateForm()) {
-                return; // Stop submission if validation fails
-            }
-
-            setLoading(true); // Show loading state
-            const formData = new FormData(form);
-
-            // Simulate form submission (replace with actual fetch API call)
-            // Example using fetch:
-            fetch('process_booking.php', { // Replace with your actual PHP endpoint
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => handleResponse(data))
-            .catch(error => {
-                handleResponse({ success: false, message: 'An error occurred while processing your request. Please try again.' });
-                console.error('Form submission error:', error);
-            })
-            .finally(() => setLoading(false)); // Hide loading state
-        });
-
-        function validateForm() {
-            let isValid = true;
-            // Clear previous errors before re-validating
-            form.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(input => {
-                const errorContainer = input.closest('.form-group, .form-group-inline .form-group').querySelector('.error-message');
-                clearError(input, errorContainer);
+        // Close nav menu when a link is clicked
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
             });
-
-            // Validate each required field
-            form.querySelectorAll('[required]').forEach(input => {
-                const errorContainer = input.closest('.form-group, .form-group-inline .form-group').querySelector('.error-message');
-                
-                if (input.value.trim() === '') {
-                    isValid = false;
-                    showError(input, errorContainer, 'This field is required.');
-                } else if (input.type === 'email' && !isValidEmail(input.value)) {
-                    isValid = false;
-                    showError(input, errorContainer, 'Please enter a valid email address.');
-                } else if (input.id === 'phone') {
-                    // Check if the phone number has the correct format (10 digits with dashes)
-                    const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
-                    if (input.value.length < 12 || !phoneRegex.test(input.value)) {
-                         isValid = false;
-                         showError(input, errorContainer, 'Please enter a valid 10-digit phone number (e.g., 123-456-7890).');
-                    }
-                }
-            });
-            return isValid;
-        }
-
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        function showError(input, container, message) {
-            if (container) {
-                container.textContent = message;
-            }
-            input.classList.add('invalid');
-        }
-
-        function clearError(input, container) {
-            if (container) {
-                container.textContent = '';
-            }
-            input.classList.remove('invalid');
-        }
-
-        function setLoading(isLoading) {
-            submitButton.disabled = isLoading;
-            buttonText.style.display = isLoading ? 'none' : 'block';
-            buttonLoader.style.display = isLoading ? 'block' : 'none';
-        }
-
-        function handleResponse(data) {
-            responseMessageContainer.className = 'response-message'; // Reset classes
-            responseMessageContainer.style.display = 'block';
-            responseMessageContainer.textContent = data.message;
-
-            if (data.success) {
-                responseMessageContainer.classList.add('success');
-                form.reset(); // Reset form fields
-                // Reset character counter manually after reset
-                if (charCounter) charCounter.textContent = '0 / 1000'; 
-                // Hide form and update intro message
-                form.style.display = 'none';
-                const formIntro = document.querySelector('.form-intro');
-                if (formIntro) {
-                    formIntro.textContent = "We've received your request! We'll be in touch soon.";
-                    formIntro.style.fontSize = '1.2rem'; // Make message slightly larger
-                }
-            } else {
-                responseMessageContainer.classList.add('error');
-            }
-        }
+        });
     }
+
+    // --- Load Selected Services from LocalStorage ---
+    const loadSelectedServices = () => {
+        const storedServices = localStorage.getItem(localStorageKey);
+        if (storedServices) {
+            const selectedServices = JSON.parse(storedServices);
+            
+            // Update the hidden input for form submission
+            if (selectedServicesInput) {
+                selectedServicesInput.value = selectedServices.join(', ');
+            }
+
+            // Display the selected services in the summary area
+            if (servicesListDisplay) {
+                if (selectedServices.length > 0) {
+                    servicesListDisplay.innerHTML = '<ul>' +
+                        selectedServices.map(service => `<li>${service}</li>`).join('') +
+                        '</ul>';
+                    
+                    // Pre-fill comments if they are empty
+                    if (!commentsTextarea.value.trim()) {
+                        commentsTextarea.value = `Services requested: ${selectedServices.join(', ')}.`;
+                        updateCharCounter();
+                    }
+                } else {
+                    // If no services were selected, prompt user to go back
+                    servicesListDisplay.innerHTML = '<p class="no-services-message">No services selected. Please return to the <a href="services_mobile.html">Services page</a> to make your selection.</p>';
+                    // Disable the form if no services are selected
+                    if (submitButton) submitButton.disabled = true;
+                }
+            }
+        } else {
+             // If no services found in localStorage, prompt user to go back
+            if (servicesListDisplay) {
+                servicesListDisplay.innerHTML = '<p class="no-services-message">No services selected. Please return to the <a href="services_mobile.html">Services page</a> to make your selection.</p>';
+            }
+            if (submitButton) submitButton.disabled = true;
+        }
+    };
+
+    // --- Form Validation Logic ---
+    const formGroups = document.querySelectorAll('.form-group');
+    const inputsToValidate = document.querySelectorAll('#appointment-form input[required], #appointment-form select[required], #appointment-form textarea[required]');
+
+    const showError = (input, message) => {
+        const errorDiv = document.querySelector(`.error-message[data-for="${input.id}"]`);
+        if (errorDiv) {
+            errorDiv.textContent = message;
+        }
+        input.classList.add('invalid');
+    };
+
+    const removeError = (input) => {
+        const errorDiv = document.querySelector(`.error-message[data-for="${input.id}"]`);
+        if (errorDiv) {
+            errorDiv.textContent = '';
+        }
+        input.classList.remove('invalid');
+    };
+
+    const validateInput = (input) => {
+        const value = input.value.trim();
+        let isValid = true;
+
+        if (input.id === 'fullName') { // Full Name
+            if (value === '') {
+                showError(input, 'Full name is required.');
+                isValid = false;
+            } else if (!/^[a-zA-Z\s'-]+$/.test(value)) { // Allows letters, spaces, hyphens, apostrophes
+                showError(input, 'Please enter a valid name.');
+                isValid = false;
+            }
+        } else if (input.id === 'email') { // Email
+            if (value === '') {
+                showError(input, 'Email address is required.');
+                isValid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                showError(input, 'Please enter a valid email address.');
+                isValid = false;
+            }
+        } else if (input.id === 'phone') { // Phone Number
+            if (value === '') {
+                showError(input, 'Phone number is required.');
+                isValid = false;
+            } else if (!/^\d{3}-?\d{3}-?\d{4}$/.test(value)) {
+                showError(input, 'Use format 123-456-7890.');
+                isValid = false;
+            }
+        } else if (input.id === 'bookingDate') { // Date
+            if (value === '') {
+                showError(input, 'Please select a date.');
+                isValid = false;
+            } else {
+                const selectedDate = new Date(value);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Start of today
+                if (selectedDate < today) {
+                    showError(input, 'Date cannot be in the past.');
+                    isValid = false;
+                }
+            }
+        } else if (input.id === 'bookingTime') { // Time
+            if (value === '') {
+                showError(input, 'Please select a time.');
+                isValid = false;
+            } else {
+                const [hours, minutes] = value.split(':').map(Number);
+                if (hours < 9 || (hours === 18 && minutes > 0) || hours > 18) {
+                    showError(input, 'Select between 9 AM and 6 PM.');
+                    isValid = false;
+                }
+            }
+        }
+        
+        if (isValid) {
+            removeError(input);
+        }
+        return isValid;
+    };
+
+    // Add event listeners for real-time validation
+    inputsToValidate.forEach(input => {
+        input.addEventListener('input', () => validateInput(input));
+        input.addEventListener('change', () => validateInput(input)); // For date/time inputs
+        input.addEventListener('blur', () => validateInput(input)); // Validate on blur as well
+    });
+
+    // Character counter for comments
+    const updateCharCounter = () => {
+        const maxLength = parseInt(commentsTextarea.getAttribute('maxlength'), 10);
+        const currentLength = commentsTextarea.value.length;
+        if (charCounter) {
+            charCounter.textContent = `${currentLength} / ${maxLength}`;
+        }
+    };
+    if (commentsTextarea) {
+        commentsTextarea.addEventListener('input', updateCharCounter);
+        updateCharCounter(); // Initialize counter on load
+    }
+
+    // --- Form Submission Handling ---
+    appointmentForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        let isFormValid = true;
+        inputsToValidate.forEach(input => {
+            if (!validateInput(input)) {
+                isFormValid = false;
+            }
+        });
+
+        // Check if services were actually selected
+        const selectedServices = localStorage.getItem(localStorageKey);
+        if (!selectedServices || JSON.parse(selectedServices).length === 0) {
+            if (servicesListDisplay) {
+                servicesListDisplay.innerHTML = '<p class="no-services-message error-message">No services selected. Please return to the <a href="services_mobile.html">Services page</a> to make your selection.</p>';
+            }
+            isFormValid = false;
+        }
+
+        if (isFormValid) {
+            // Disable button and show loader
+            submitButton.querySelector('.button-text').style.display = 'none';
+            submitButton.querySelector('.button-loader').style.display = 'block';
+            submitButton.disabled = true;
+
+            // Simulate form submission (replace with actual AJAX if you have a backend)
+            setTimeout(() => {
+                // Clear localStorage after successful (simulated) submission
+                localStorage.removeItem(localStorageKey);
+                
+                // Show success message
+                responseMessageDiv.textContent = 'Booking request received! We will contact you shortly to confirm your appointment.';
+                responseMessageDiv.classList.add('success');
+                responseMessageDiv.style.display = 'block';
+
+                // Clear the form fields
+                appointmentForm.reset();
+                if (selectedServicesInput) selectedServicesInput.value = ''; // Clear hidden input
+                if (servicesListDisplay) servicesListDisplay.innerHTML = ''; // Clear summary display
+                updateCharCounter(); // Reset counter
+                
+                // Hide loader and re-enable button (optional, as form is cleared)
+                submitButton.querySelector('.button-text').style.display = 'inline-block';
+                submitButton.querySelector('.button-loader').style.display = 'none';
+                
+                // Re-enable button if needed, or leave it disabled
+                // submitButton.disabled = false; 
+
+            }, 1500); // Simulate network delay
+        } else {
+            console.log("Form is invalid.");
+        }
+    });
+
+    // Initial load of selected services and validation setup
+    loadSelectedServices();
 });
