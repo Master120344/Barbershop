@@ -6,6 +6,8 @@
     --light-grey: #aaaaaa;
     --font-oswald: 'Oswald', sans-serif;
     --font-roboto: 'Roboto', sans-serif;
+    --selected-border-color: var(--secondary-color); /* Color for selected card border */
+    --selected-bg-color: #2a2a2a; /* Slightly darker background for selected */
 }
 
 body {
@@ -149,18 +151,51 @@ main {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
     text-align: center;
     padding: 25px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Push button to the bottom */
     align-items: center; /* Center content within card */
+    cursor: pointer; /* Indicate it's clickable */
+    position: relative; /* For the selection indicator */
+    border: 3px solid transparent; /* Default transparent border */
 }
 
 .service-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2); /* Gold glow */
+}
+
+/* Style for selected service card */
+.service-card.selected {
+    border-color: var(--selected-border-color);
+    background-color: var(--selected-bg-color);
+    transform: translateY(-5px); /* Slight lift for selected items */
+    box-shadow: 0 10px 35px rgba(212, 175, 55, 0.25);
+}
+
+.selection-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--secondary-color);
+    color: #000;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+}
+
+.service-card.selected .selection-indicator {
+    opacity: 1; /* Show when selected */
 }
 
 .service-icon {
@@ -194,8 +229,17 @@ main {
     margin-bottom: 1.5em;
 }
 
+/* --- Proceed Button Styles --- */
+.proceed-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
 .cta-button {
-    display: inline-block;
+    display: inline-flex; /* Use flex to center text and loader */
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
     background: linear-gradient(145deg, var(--secondary-color), #b8952a);
     color: #000;
     padding: 12px 25px;
@@ -209,17 +253,20 @@ main {
     border: none;
     font-size: 1rem;
     text-decoration: none; /* Ensure links are not underlined */
-    margin-top: auto; /* Push button to the bottom if content varies */
 }
 
-.cta-button:hover {
+.cta-button:hover:not(:disabled) {
     background: linear-gradient(145deg, #e7c251, #c9a43a);
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
 }
 
-.cta-button:active {
-    transform: translateY(0);
+.cta-button:disabled {
+    background: #555; /* Darker grey when disabled */
+    color: var(--light-grey);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 /* --- Footer Styles --- */
