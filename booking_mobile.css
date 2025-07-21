@@ -103,13 +103,32 @@ input, select, textarea {
     font-family: var(--font-roboto); font-size: 1rem;
     box-sizing: border-box; transition: all 0.3s ease;
 }
-textarea { padding: 15px; min-height: 120px; resize: vertical; }
+textarea { 
+    padding: 15px; 
+    min-height: 120px; /* Slightly increased min-height */
+    resize: vertical; 
+}
 input[type="date"], input[type="time"] { padding-left: 15px; cursor: text; }
 .input-wrapper:focus-within .input-icon { opacity: 1; }
-input:focus, select:focus, textarea:focus {
-    outline: none; border-color: var(--secondary-color);
-    background-color: #282828; box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+
+/* Focus state: subtle green border */
+input:focus, 
+select:focus, 
+textarea:focus {
+    outline: none; 
+    border-color: var(--secondary-color); /* Green border on focus */
+    background-color: #282828; /* Slightly lighter dark grey */
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
 }
+
+/* Invalid state: red border */
+input.invalid, 
+select.invalid, 
+textarea.invalid {
+    border-color: var(--error-color); /* Red border for errors */
+    box-shadow: 0 0 8px rgba(255, 107, 107, 0.5); /* Red glow */
+}
+
 select { appearance: none; cursor: pointer; }
 .char-counter {
     text-align: right; font-size: 0.8rem;
@@ -138,10 +157,7 @@ select { appearance: none; cursor: pointer; }
     color: var(--error-color); font-size: 0.9rem;
     height: 1em; margin-top: 8px; font-weight: 500;
 }
-input.invalid, select.invalid, textarea.invalid {
-    border-color: var(--error-color);
-    box-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
-}
+
 .response-message {
     padding: 15px; margin-top: 20px; border-radius: 5px;
     text-align: center; display: none;
