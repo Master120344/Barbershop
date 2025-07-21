@@ -14,15 +14,8 @@
 
     <style>
         /* Custom styles for calendar view */
-        #availability-calendar-section {
-            margin-top: 40px; /* Space above calendar section */
-            padding: 15px; /* Add some padding */
-            /* display: none;  We'll control visibility via JS class */
-        }
-        #availability-calendar-section.visible {
-            display: block; /* Shown when services are selected */
-        }
         #calendar-container {
+            margin-top: 30px;
             background-color: var(--dark-grey);
             padding: 20px;
             border-radius: 8px;
@@ -31,30 +24,28 @@
         .fc-theme-standard .fc-scrollgrid {
             border: 1px solid #444; /* Match form group border */
         }
-        .fc-toolbar-chunk button { /* Styles for toolbar buttons */
+        .fc-today-button, .fc-prev-button, .fc-next-button, .fc-dayGridMonth-button, .fc-timeGridWeek-button, .fc-timeGridDay-button {
             background-color: var(--secondary-color) !important;
             color: #000 !important;
             border: none !important;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: background-color 0.3s ease;
-            padding: 5px 10px; /* Smaller padding for buttons */
-            border-radius: 4px;
         }
-        .fc-toolbar-chunk button:hover {
+        .fc-today-button:hover, .fc-prev-button:hover, .fc-next-button:hover, .fc-dayGridMonth-button:hover, .fc-timeGridWeek-button:hover, .fc-timeGridDay-button:hover {
             background-color: #b8952a !important; /* Darker gold on hover */
         }
-        .fc-event {
-            border: none !important;
-        }
+        /* Styling for different event types */
         .fc-event.fc-event-booked { /* Booked slots */
-            background-color: var(--error-color) !important;
-            border-color: var(--error-color) !important;
+            background-color: var(--error-color);
+            border-color: var(--error-color);
+            color: var(--text-color);
         }
         .fc-event.fc-event-available { /* Available slots */
-            background-color: var(--success-color) !important;
-            border-color: var(--success-color) !important;
-            color: #000 !important; /* Black text for better contrast on green */
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            color: #000; /* Black text for better contrast on green */
         }
+        /* Make calendar clickable to potentially pre-fill form */
         .fc-daygrid-day-frame, .fc-timegrid-slot-con {
             cursor: pointer;
         }
@@ -127,6 +118,7 @@
                 </div>
                 
                 <!-- Hidden input for selected services -->
+                <!-- FIX: Changed name to 'service' to match PHP processing -->
                 <input type="hidden" id="selectedServicesInput" name="service" required>
 
                 <!-- Date & Time -->
@@ -172,7 +164,7 @@
 
         <!-- Calendar Section -->
         <section id="availability-calendar-section">
-            <!-- Removed the H2 title here to avoid redundancy -->
+            <h2>Check Availability</h2>
             <div id="calendar-container">
                 <div id="calendar"></div>
             </div>
