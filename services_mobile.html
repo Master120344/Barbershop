@@ -35,59 +35,75 @@
 
             <div class="services-grid">
                 <!-- Service 1: Men's Haircut -->
-                <div class="service-card">
-                    <div class="service-icon">✂️</div> <!-- Placeholder Icon -->
+                <div class="service-card" data-service="Men's Haircut">
+                    <div class="service-icon">✂️</div>
                     <h3 class="service-name">Men's Haircut</h3>
                     <p class="service-description">Classic cuts, fades, and modern styles. Includes wash and style.</p>
                     <p class="service-price">$45.00</p>
-                    <a href="booking_mobile.html" class="cta-button">Book Now</a>
+                    <div class="selection-indicator">✓</div>
                 </div>
 
                 <!-- Service 2: Women's Haircut -->
-                <div class="service-card">
-                    <div class="service-icon">💇‍♀️</div> <!-- Placeholder Icon -->
+                <div class="service-card" data-service="Women's Haircut">
+                    <div class="service-icon">💇‍♀️</div>
                     <h3 class="service-name">Women's Haircut</h3>
                     <p class="service-description">Precision cuts, styling, and blowouts for all hair types.</p>
                     <p class="service-price">$60.00</p>
-                    <a href="booking_mobile.html" class="cta-button">Book Now</a>
+                    <div class="selection-indicator">✓</div>
                 </div>
 
                 <!-- Service 3: Kids Haircut -->
-                <div class="service-card">
-                    <div class="service-icon">🧒</div> <!-- Placeholder Icon -->
+                <div class="service-card" data-service="Kids Haircut (Under 12)">
+                    <div class="service-icon">🧒</div>
                     <h3 class="service-name">Kids Haircut (Under 12)</h3>
                     <p class="service-description">Gentle and quick haircuts for our younger clients.</p>
                     <p class="service-price">$30.00</p>
-                    <a href="booking_mobile.html" class="cta-button">Book Now</a>
+                    <div class="selection-indicator">✓</div>
                 </div>
 
                 <!-- Service 4: Beard Trim & Shave -->
-                <div class="service-card">
-                    <div class="service-icon">🧔‍♂️</div> <!-- Placeholder Icon -->
+                <div class="service-card" data-service="Beard Trim & Shave">
+                    <div class="service-icon">🧔‍♂️</div>
                     <h3 class="service-name">Beard Trim & Shave</h3>
                     <p class="service-description">Expert shaping, hot towel shave, and beard conditioning.</p>
                     <p class="service-price">$35.00</p>
-                    <a href="booking_mobile.html" class="cta-button">Book Now</a>
+                    <div class="selection-indicator">✓</div>
                 </div>
 
                 <!-- Service 5: Hair Styling & Color -->
-                <div class="service-card">
-                    <div class="service-icon">🎨</div> <!-- Placeholder Icon -->
+                <div class="service-card" data-service="Hair Styling & Color">
+                    <div class="service-icon">🎨</div>
                     <h3 class="service-name">Styling & Color</h3>
                     <p class="service-description">From simple blowouts to vibrant color transformations.</p>
                     <p class="service-price">Starts at $70.00</p>
-                    <a href="booking_mobile.html" class="cta-button">Book Now</a>
+                    <div class="selection-indicator">✓</div>
                 </div>
 
                  <!-- Service 6: Buzz Cut -->
-                 <div class="service-card">
-                    <div class="service-icon">⚡</div> <!-- Placeholder Icon -->
+                 <div class="service-card" data-service="Buzz Cut">
+                    <div class="service-icon">⚡</div>
                     <h3 class="service-name">Buzz Cut</h3>
                     <p class="service-description">Clean, sharp, and efficient buzz cuts.</p>
                     <p class="service-price">$25.00</p>
-                    <a href="booking_mobile.html" class="cta-button">Book Now</a>
+                    <div class="selection-indicator">✓</div>
                 </div>
 
+                <!-- Service 7: Custom Service -->
+                <div class="service-card" data-service="Custom Service">
+                    <div class="service-icon">✨</div> <!-- Placeholder Icon -->
+                    <h3 class="service-name">Custom Service</h3>
+                    <p class="service-description">Have something else in mind? Let us know!</p>
+                    <p class="service-price">Upon Consultation</p>
+                    <div class="selection-indicator">✓</div>
+                </div>
+
+            </div>
+            
+            <!-- Proceed to Booking Button -->
+            <div class="proceed-container">
+                <button id="proceed-to-booking" class="cta-button" disabled>
+                    <span class="button-text">Proceed to Booking</span>
+                </button>
             </div>
         </section>
     </main>
