@@ -8,51 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <!-- FullCalendar CSS -->
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet'>
-
-    <style>
-        /* Custom styles for calendar view */
-        #calendar-container {
-            margin-top: 30px;
-            background-color: var(--dark-grey);
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #333;
-        }
-        .fc-theme-standard .fc-scrollgrid {
-            border: 1px solid #444; /* Match form group border */
-        }
-        .fc-today-button, .fc-prev-button, .fc-next-button, .fc-dayGridMonth-button, .fc-timeGridWeek-button, .fc-timeGridDay-button {
-            background-color: var(--secondary-color) !important;
-            color: #000 !important;
-            border: none !important;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: background-color 0.3s ease;
-        }
-        .fc-today-button:hover, .fc-prev-button:hover, .fc-next-button:hover, .fc-dayGridMonth-button:hover, .fc-timeGridWeek-button:hover, .fc-timeGridDay-button:hover {
-            background-color: #b8952a !important; /* Darker gold on hover */
-        }
-        /* Styling for different event types */
-        .fc-event.fc-event-booked { /* Booked slots */
-            background-color: var(--error-color);
-            border-color: var(--error-color);
-            color: var(--text-color);
-        }
-        .fc-event.fc-event-available { /* Available slots */
-            background-color: var(--success-color);
-            border-color: var(--success-color);
-            color: #000; /* Black text for better contrast on green */
-        }
-        /* Make calendar clickable to potentially pre-fill form */
-        .fc-daygrid-day-frame, .fc-timegrid-slot-con {
-            cursor: pointer;
-        }
-        .fc-daygrid-day-frame:hover, .fc-timegrid-slot-con:hover {
-            background-color: #383838 !important; /* Slightly lighter on hover */
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -76,7 +31,7 @@
     <main>
         <section id="booking-form-section">
             <h2>Book Your Appointment</h2>
-            <p class="form-intro">Please fill in your details and select your preferred time. We'll confirm your booking.</p>
+            <p class="form-intro">Confirm your selected services, fill in your details, and select a preferred time. We'll get back to you to confirm your booking.</p>
             
             <!-- Display selected services -->
             <div id="selected-services-summary" class="form-group">
@@ -117,28 +72,22 @@
                     <div class="error-message" data-for="phone"></div>
                 </div>
                 
-                <!-- Hidden input for selected services -->
-                <!-- FIX: Changed name to 'service' to match PHP processing -->
                 <input type="hidden" id="selectedServicesInput" name="service" required>
 
                 <!-- Date & Time -->
                 <div class="form-group-inline">
                     <div class="form-group">
-                        <label for="bookingDate">Date</label>
+                        <label for="bookingDate">Preferred Date</label>
                         <div class="input-wrapper">
-                            <span class="input-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19,4H17V2H15V4H9V2H7V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4M19,18H7V7H19V18Z"/></svg>
-                            </span>
+                            <span class="input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19,4H17V2H15V4H9V2H7V4H5A2,2,0,0,0,3,6V20a2,2,0,0,0,2,2H19a2,2,0,0,0,2-2V6A2,2,0,0,0,19,4M19,18H7V7H19V18Z"/></svg></span>
                             <input type="date" id="bookingDate" name="bookingDate" required>
                         </div>
                         <div class="error-message" data-for="bookingDate"></div>
                     </div>
                     <div class="form-group">
-                        <label for="bookingTime">Time</label>
+                        <label for="bookingTime">Preferred Time</label>
                         <div class="input-wrapper">
-                            <span class="input-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,20a8,8,0,0,0,8-8V8a8,8,0,0,0-16,0v4a8,8,0,0,0,8,8Zm0-14a6,6,0,0,1,6,6H6A6,6,0,0,1,12,6Zm0,12a6,6,0,0,1-5.64-4H17.64A6,6,0,0,1,12,18Z"/></svg>
-                            </span>
+                             <span class="input-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20ZM12.5,7H11v6l5.25,3.15L17,14.92l-4.5-2.67V7Z"></path></svg></span>
                             <input type="time" id="bookingTime" name="bookingTime" required min="09:00" max="18:00">
                         </div>
                         <div class="error-message" data-for="bookingTime"></div>
@@ -154,20 +103,21 @@
 
                 <!-- Submit Button -->
                 <button type="submit" id="submit-booking-button" class="cta-button">
-                    <span class="button-text">Request Booking</span>
+                    <span class="button-text">Request Booking via Email</span>
                     <span class="button-loader"></span>
                 </button>
             </form>
             
-            <div id="form-response-message" class="response-message"></div>
-        </section>
-
-        <!-- Calendar Section -->
-        <section id="availability-calendar-section">
-            <h2>Check Availability</h2>
-            <div id="calendar-container">
-                <div id="calendar"></div>
+             <!-- PayPal/Stripe Placeholder -->
+            <div class="payment-separator">
+                <span>Or Pay in Person</span>
             </div>
+            <div class="paypal-button-container">
+                <p>To pre-pay for your appointment, use the button below. This will be integrated with our payment processor soon.</p>
+                <a href="#" class="paypal-button">Pay Now (Coming Soon)</a>
+            </div>
+
+            <div id="form-response-message" class="response-message"></div>
         </section>
     </main>
 
@@ -175,10 +125,6 @@
         <p>© 2025 Clean Cutz. All rights reserved.</p>
     </footer>
 
-    <!-- jQuery (required by FullCalendar for some versions, good to have) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- FullCalendar JS -->
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.js'></script>
     <script src="booking_mobile.js"></script>
 </body>
 </html>
