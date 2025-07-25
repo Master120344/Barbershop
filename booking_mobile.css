@@ -54,7 +54,7 @@ header {
 .hamburger {
     cursor: pointer;
     z-index: 1001;
-    display: flex; /* Default for mobile */
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
@@ -185,16 +185,10 @@ label {
     align-items: center;
 }
 
-input[type="date"] + .input-icon,
-input[type="time"] + .input-icon {
-    color: var(--secondary-color);
-    opacity: 0.8;
-}
-
 input, select, textarea {
     width: 100%;
     padding: 15px 15px 15px 50px;
-    background-color: var(--dark-grey);
+    background-color: var(--primary-color);
     border: 1px solid #444;
     border-radius: 5px;
     color: var(--text-color);
@@ -230,20 +224,9 @@ textarea:focus {
 }
 
 input.invalid,
-select.invalid,
 textarea.invalid {
     border-color: var(--error-color);
     box-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
-}
-
-select {
-    appearance: none;
-    cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 15px top 50%;
-    background-size: 18px;
-    color: var(--text-color);
 }
 
 .char-counter {
@@ -289,20 +272,6 @@ select {
     box-shadow: none;
 }
 
-.button-loader {
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(0,0,0,0.2);
-    border-top-color: #000;
-    border-radius: 50%;
-    display: none;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
 .error-message {
     color: var(--error-color);
     font-size: 0.9rem;
@@ -312,24 +281,34 @@ select {
 }
 
 .services-list-display {
-    background-color: var(--dark-grey);
+    background-color: #1c1c1c;
     border: 1px solid #444;
     border-radius: 5px;
     padding: 15px;
     min-height: 60px;
-    font-size: 0.95rem;
-    color: var(--light-grey);
+    font-size: 1rem;
+    color: var(--text-color);
     line-height: 1.7;
 }
 
 .services-list-display ul {
-    list-style: disc;
-    padding-left: 25px;
+    list-style-type: none;
+    padding-left: 0;
     margin: 0;
 }
 
 .services-list-display li {
     margin-bottom: 8px;
+    padding-left: 1.5em;
+    position: relative;
+}
+
+.services-list-display li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+    font-weight: bold;
 }
 
 .no-services-message {
@@ -368,6 +347,67 @@ select {
     background-color: rgba(255, 107, 107, 0.1);
     color: var(--error-color);
     border-color: var(--error-color);
+}
+
+/* --- Payment Placeholder Styles --- */
+.payment-separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--light-grey);
+    margin: 40px 0 20px 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-family: var(--font-oswald);
+}
+
+.payment-separator::before,
+.payment-separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #444;
+}
+
+.payment-separator:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.payment-separator:not(:empty)::after {
+    margin-left: .5em;
+}
+
+.paypal-button-container {
+    text-align: center;
+    background-color: #1c1c1c;
+    padding: 20px;
+    border: 1px solid #444;
+    border-radius: 8px;
+}
+
+.paypal-button-container p {
+    margin: 0 0 15px 0;
+    color: var(--light-grey);
+    font-size: 0.9rem;
+}
+
+.paypal-button {
+    display: inline-block;
+    background-color: #ffc439; /* PayPal Gold */
+    color: #003087; /* PayPal Blue */
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.paypal-button:hover {
+    background-color: #f5b924;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* --- Responsive Adjustments --- */
