@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Razor N Clips — Austin Barbershop</title>
     <link rel="stylesheet" href="index_mobile.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,178 +10,121 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- HEADER -->
-    <header class="site-header" role="banner">
-        <div class="container header-row">
-            <a class="brand" href="home_mobile.html" aria-label="Razor N Clips home">
-                <img src="logo.png" alt="Razor N Clips logo" class="brand-logo">
-                <span class="brand-text">Razor N Clips</span>
-            </a>
-            <button id="navToggle" class="hamburger" aria-expanded="false" aria-controls="mainNav" aria-label="Toggle navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <nav id="mainNav" class="nav" role="navigation" aria-label="Main menu">
-                <ul>
-                    <li><a href="home_mobile.html">Home</a></li>
-                    <li><a href="services_mobile.html">Services</a></li>
-                    <li><a href="about_mobile.html">About</a></li>
-                    <li><a href="book_mobile.html">Book Appointment</a></li>
-                    <li><a href="contact_mobile.html">Contact</a></li>
-                </ul>
-            </nav>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <a href="index_mobile.html">
+                    <img src="logo.png" alt="Razor N Clips Logo" class="logo">
+                </a>
+            </div>
+            <div class="site-title-container">
+                 <span class="site-title">Razor N Clips</span>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
         </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="index_mobile.html">Home</a></li>
+                <li><a href="services_mobile.html">Services</a></li>
+                <li><a href="products_mobile.html">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="booking_mobile.html">Book</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- HERO -->
-    <main id="home">
+    <main>
+        <!-- HERO SECTION -->
         <section class="hero">
-            <div class="container hero-grid">
-                <div class="hero-copy">
-                    <h1>Razor N Clips</h1>
-                    <p class="lead">Classic craftsmanship. Modern edge. Austin’s destination for precision haircuts, shaves, and grooming.</p>
-                    <div class="hero-actions">
-                        <a href="book_mobile.html" class="btn primary">BOOK NOW</a>
-                        <a href="services_mobile.html" class="btn outline">VIEW SERVICES</a>
-                    </div>
-                    <ul class="trust-list">
-                        <li>Walk-ins welcome</li>
-                        <li>Straight razor shaves</li>
-                        <li>Sanitized tools</li>
-                    </ul>
-                </div>
-                <div class="hero-media">
-                    <img src="shop-photo.jpg" alt="Inside our shop" class="hero-image" width="800" height="600">
+            <div class="hero-image-container">
+                <img src="shop-photo.jpg" alt="Inside the Razor N Clips barbershop" class="hero-image">
+            </div>
+            <div class="hero-text">
+                <h1>Classic Craftsmanship, Modern Edge</h1>
+                <p class="lead">Austin’s destination for precision haircuts, shaves, and grooming.</p>
+                <div class="hero-actions">
+                    <a href="booking_mobile.html" class="cta-button">Book Now</a>
+                    <a href="services_mobile.html" class="cta-button-outline">View Services</a>
                 </div>
             </div>
         </section>
 
-        <!-- SERVICES -->
-        <section id="services" class="section services">
-            <div class="container">
-                <h2>WHAT WE OFFER</h2>
-                <div class="services-cards">
-                    <article class="card">
-                        <div class="card-icon">✂</div>
-                        <h3>Haircuts</h3>
-                        <p>Fades, scissor cuts, modern & classic styles for men, women, and kids.</p>
-                    </article>
-                    <article class="card">
-                        <div class="card-icon">🪒</div>
-                        <h3>Shaves & Beard</h3>
-                        <p>Straight-razor shaves, beard trims, and detailed shaping.</p>
-                    </article>
-                    <article class="card">
-                        <div class="card-icon">💈</div>
-                        <h3>Styling & Color</h3>
-                        <p>Texture work, styling, and color touch-ups to refresh your look.</p>
-                    </article>
-                    <article class="card">
-                        <div class="card-icon">🚶</div>
-                        <h3>Walk-ins</h3>
-                        <p>Flexible openings for last-minute cuts and busy schedules.</p>
-                    </article>
+        <!-- SERVICES OVERVIEW -->
+        <section id="services-overview" class="section">
+            <h2>WHAT WE OFFER</h2>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <div class="overview-icon">✂️</div>
+                    <h3>Haircuts & Fades</h3>
+                    <p>Modern and classic styles for men, women, and children.</p>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-icon">🧔‍♂️</div>
+                    <h3>Beard & Shave</h3>
+                    <p>Expert shaping, hot towel shaves, and beard conditioning.</p>
+                </div>
+                <div class="overview-card">
+                    <div class="overview-icon">🎨</div>
+                    <h3>Styling & Color</h3>
+                    <p>From simple blowouts to vibrant color transformations.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT -->
-        <section id="about" class="section about">
-            <div class="container about-grid">
-                <div class="owner">
-                    <div class="owner-img-wrap">
-                        <img src="anthony-logo.png" alt="Anthony - Owner & Master Barber" class="owner-img">
-                    </div>
-                    <h3>ANTHONY</h3>
-                    <p class="title">Owner & Master Barber</p>
-                    <p class="owner-desc">Anthony is an artist with a passion for tailored cuts and custom design. Based in Austin, he brings precision and creativity to each client.</p>
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section">
+            <div class="about-grid">
+                <div class="owner-image-container">
+                    <img src="anthony-logo.png" alt="Anthony - Owner & Master Barber" class="owner-image">
                 </div>
-                <div class="about-text">
+                <div class="about-content">
                     <h2>WHY CHOOSE US</h2>
-                    <ul class="features">
-                        <li>Experienced barbers with a clean, modern shop</li>
+                    <p class="owner-title"><strong>ANTHONY</strong> - Owner & Master Barber</p>
+                    <p class="owner-desc">An artist with a passion for tailored cuts and custom designs, bringing precision and creativity to each client in Austin.</p>
+                    <ul class="features-list">
+                        <li>Experienced barbers in a clean, modern shop</li>
                         <li>Premium products and strict sanitation</li>
-                        <li>Personalized consultations and finishing touches</li>
+                        <li>Personalized consultations for the perfect look</li>
                     </ul>
-                    <div class="badges">
-                        <span class="badge">Expert Barbers</span>
-                        <span class="badge">Premium Products</span>
-                        <span class="badge">Walk-ins Welcome</span>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- BOOK -->
-        <section id="book" class="section book">
-            <div class="container book-wrap">
-                <h2>BOOK YOUR APPOINTMENT</h2>
-                <p class="muted">Ready for a fresh look? Reserve your time online or call us.</p>
-                <div class="booking-actions">
-                    <a class="btn primary" href="booking_mobile.html">BOOK ONLINE</a>
-                    <a class="btn phone" href="tel:1234567890">CALL: (512) 800-4612</a>
-                </div>
-                <div class="book-notes">
-                    <p>We accept walk-ins and online bookings. Please arrive 10 minutes early.</p>
-                </div>
-            </div>
+        <!-- BOOKING CTA -->
+        <section id="book" class="section booking-cta">
+            <h2>Ready for a Fresh Look?</h2>
+            <p>Reserve your time online or give us a call. Walk-ins are always welcome.</p>
+            <a href="booking_mobile.html" class="cta-button">Book Your Appointment</a>
         </section>
 
-        <!-- CONTACT -->
-        <section id="contact" class="section contact">
-            <div class="container contact-grid">
-                <div class="contact-card">
-                    <h2>CONTACT US</h2>
-                    <p class="contact-line"><span class="icon">☎</span> <a href="tel:1234567890">(512) 800-4612</a></p>
-                    <p class="contact-line"><span class="icon">✉</span> <a href="mailto:info@cleancutz.com">contact@razornclips.com</a></p>
-                    <p class="contact-line"><span class="icon">📍</span> Austin, TX</p>
-                    <div class="social">
-                        <a href="#" aria-label="facebook"><img src="facebook-icon.png" alt="Facebook"></a>
-                        <a href="#" aria-label="instagram"><img src="instagram-icon.png" alt="Instagram"></a>
-                        <a href="#" aria-label="twitter"><img src="twitter-icon.png" alt="Twitter"></a>
-                    </div>
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section">
+            <div class="contact-card">
+                <h2>CONTACT US</h2>
+                <p class="contact-line"><span class="icon">📞</span> <a href="tel:512-800-4612">(512) 800-4612</a></p>
+                <p class="contact-line"><span class="icon">✉️</span> <a href="mailto:contact@razornclips.com">contact@razornclips.com</a></p>
+                <p class="contact-line"><span class="icon">📍</span> Austin, TX</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="facebook"><img src="facebook-icon.png" alt="Facebook"></a>
+                    <a href="#" aria-label="instagram"><img src="instagram-icon.png" alt="Instagram"></a>
+                    <a href="#" aria-label="twitter"><img src="twitter-icon.png" alt="Twitter"></a>
                 </div>
-                <div class="map-card">
-                    <div class="map-placeholder">Map or shop photo</div>
-                </div>
+            </div>
+             <div class="map-placeholder">
+                <p>Map or Shop Photo Here</p>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="container footer-inner">
-            <p>© <span id="year"></span> Razor N Clips. All rights reserved.</p>
-        </div>
+    <footer>
+        <p>© <span id="year"></span> Razor N Clips. All rights reserved.</p>
     </footer>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    var navToggle = document.getElementById('navToggle');
-    var nav = document.getElementById('mainNav');
-    var yearEl = document.getElementById('year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-    function openNav() {
-        nav.classList.add('open');
-        navToggle.setAttribute('aria-expanded', 'true');
-    }
-    function closeNav() {
-        nav.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-    }
-
-    navToggle.addEventListener('click', function (e) {
-        e.stopPropagation();
-        nav.classList.toggle('open');
-        navToggle.setAttribute('aria-expanded', nav.classList.contains('open'));
-    });
-
-    document.addEventListener('click', function (e) {
-        if (!nav.contains(e.target) && !navToggle.contains(e.target)) closeNav();
-    });
-});
-</script>
+    <script src="index_mobile.js"></script>
 </body>
 </html>
